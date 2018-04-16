@@ -1,0 +1,8 @@
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Tests\bin\Debug\netcoreapp2.0\Clients.Tests.deps.json
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Tests\bin\Debug\netcoreapp2.0\Clients.Tests.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Tests\bin\Debug\netcoreapp2.0\Clients.Tests.pdb
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Tests\obj\Debug\netcoreapp2.0\Clients.Tests.csproj.CoreCompileInputs.cache
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Tests\obj\Debug\netcoreapp2.0\Clients.Tests.AssemblyInfoInputs.cache
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Tests\obj\Debug\netcoreapp2.0\Clients.Tests.AssemblyInfo.cs
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Tests\obj\Debug\netcoreapp2.0\Clients.Tests.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Tests\obj\Debug\netcoreapp2.0\Clients.Tests.pdb

@@ -1,0 +1,12 @@
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Models\bin\Debug\netcoreapp2.0\Notifications.Models.deps.json
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Models\bin\Debug\netcoreapp2.0\Notifications.Models.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Models\bin\Debug\netcoreapp2.0\Notifications.Models.pdb
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Models\bin\Debug\netcoreapp2.0\Infrastructure.Domain.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Models\bin\Debug\netcoreapp2.0\Infrastructure.Domain.pdb
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Models\obj\Debug\netcoreapp2.0\Notifications.Models.csprojResolveAssemblyReference.cache
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Models\obj\Debug\netcoreapp2.0\Notifications.Models.csproj.CoreCompileInputs.cache
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Models\obj\Debug\netcoreapp2.0\Notifications.Models.AssemblyInfoInputs.cache
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Models\obj\Debug\netcoreapp2.0\Notifications.Models.AssemblyInfo.cs
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Models\obj\Debug\netcoreapp2.0\Notifications.Models.csproj.CopyComplete
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Models\obj\Debug\netcoreapp2.0\Notifications.Models.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Models\obj\Debug\netcoreapp2.0\Notifications.Models.pdb

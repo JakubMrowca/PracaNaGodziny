@@ -1,0 +1,9 @@
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Services\bin\Debug\netcoreapp2.0\Clients.Services.deps.json
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Services\bin\Debug\netcoreapp2.0\Clients.Services.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Services\bin\Debug\netcoreapp2.0\Clients.Services.pdb
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Services\obj\Debug\netcoreapp2.0\Clients.Services.csproj.CoreCompileInputs.cache
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Services\obj\Debug\netcoreapp2.0\Clients.Services.AssemblyInfoInputs.cache
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Services\obj\Debug\netcoreapp2.0\Clients.Services.AssemblyInfo.cs
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Services\obj\Debug\netcoreapp2.0\Clients.Services.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Services\obj\Debug\netcoreapp2.0\Clients.Services.pdb
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Services\obj\Debug\netcoreapp2.0\Clients.Services.csprojResolveAssemblyReference.cache

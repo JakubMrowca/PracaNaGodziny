@@ -1,0 +1,16 @@
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Models\obj\Debug\netcoreapp2.0\Works.Models.csprojResolveAssemblyReference.cache
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Models\obj\Debug\netcoreapp2.0\Works.Models.csproj.CoreCompileInputs.cache
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Models\obj\Debug\netcoreapp2.0\Works.Models.AssemblyInfoInputs.cache
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Models\obj\Debug\netcoreapp2.0\Works.Models.AssemblyInfo.cs
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Models\bin\Debug\netcoreapp2.0\Works.Models.deps.json
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Models\bin\Debug\netcoreapp2.0\Works.Models.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Models\bin\Debug\netcoreapp2.0\Clients.Shared.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Models\bin\Debug\netcoreapp2.0\Infrastructure.Domain.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Models\bin\Debug\netcoreapp2.0\Works.Shared.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Models\bin\Debug\netcoreapp2.0\Infrastructure.Domain.pdb
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Models\bin\Debug\netcoreapp2.0\Works.Shared.pdb
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Models\bin\Debug\netcoreapp2.0\Clients.Shared.pdb
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Models\obj\Debug\netcoreapp2.0\Works.Models.csproj.CopyComplete
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Models\bin\Debug\netcoreapp2.0\Works.Models.pdb
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Models\obj\Debug\netcoreapp2.0\Works.Models.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Models\obj\Debug\netcoreapp2.0\Works.Models.pdb

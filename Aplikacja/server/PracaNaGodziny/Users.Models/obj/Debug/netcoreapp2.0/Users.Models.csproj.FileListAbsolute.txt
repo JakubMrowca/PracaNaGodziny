@@ -1,0 +1,14 @@
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Users.Models\bin\Debug\netcoreapp2.0\Users.Models.deps.json
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Users.Models\bin\Debug\netcoreapp2.0\Users.Models.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Users.Models\bin\Debug\netcoreapp2.0\Users.Models.pdb
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Users.Models\bin\Debug\netcoreapp2.0\Infrastructure.Domain.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Users.Models\bin\Debug\netcoreapp2.0\Users.Shared.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Users.Models\bin\Debug\netcoreapp2.0\Infrastructure.Domain.pdb
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Users.Models\bin\Debug\netcoreapp2.0\Users.Shared.pdb
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Users.Models\obj\Debug\netcoreapp2.0\Users.Models.csprojResolveAssemblyReference.cache
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Users.Models\obj\Debug\netcoreapp2.0\Users.Models.csproj.CoreCompileInputs.cache
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Users.Models\obj\Debug\netcoreapp2.0\Users.Models.AssemblyInfoInputs.cache
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Users.Models\obj\Debug\netcoreapp2.0\Users.Models.AssemblyInfo.cs
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Users.Models\obj\Debug\netcoreapp2.0\Users.Models.csproj.CopyComplete
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Users.Models\obj\Debug\netcoreapp2.0\Users.Models.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Users.Models\obj\Debug\netcoreapp2.0\Users.Models.pdb

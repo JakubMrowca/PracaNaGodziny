@@ -2,6 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Clients.Models.Storage;
+using Clients.Services.CommandHandlers;
+using Clients.Services.EventHandlers;
+using Clients.Services.QueryHandlers;
+using Clients.Shared.Commands;
+using Clients.Shared.Events;
+using Clients.Shared.Queries;
+using Clients.Shared.ValueObjects;
+using DataBase;
 using Infrastructure.Domain.Commands;
 using Infrastructure.Domain.Events;
 using Infrastructure.Domain.Queries;
@@ -24,8 +33,10 @@ using Users.Shared.Events;
 using Users.Shared.Queries;
 using Users.Shared.ValueObjects;
 using Works.Models.Domain;
+using Works.Models.Storage;
 using Works.Models.View;
 using Works.Services.CommandHandlers;
+using Works.Services.EventHandlers;
 using Works.Services.QueryHandlers;
 using Works.Shared.Commands;
 using Works.Shared.Events;
@@ -68,7 +79,10 @@ namespace WebApi
 
         private void ConfigureEf(IServiceCollection services)
         {
+            services.AddDbContext<WorkHourDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("WorkHour")));
             services.AddDbContext<UsersDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("WorkHour")));
+            services.AddDbContext<ClientsDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("WorkHour")));
+            services.AddDbContext<WorkDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("WorkHour")));
         }
 
         private void ConfigureMarten(IServiceCollection services)
@@ -93,10 +107,15 @@ namespace WebApi
                     options.Events.AddEventType(typeof(NewWorkCreated));
                     options.Events.AddEventType(typeof(NewInflowRecorded));
                     options.Events.AddEventType(typeof(NewOutflowRecorded));
+                    options.Events.AddEventType(typeof(WorkerCreated));
+                    options.Events.AddEventType(typeof(EmplyerCreated));
 
                     options.Events.AddEventType(typeof(UserCreated));
                     options.Events.AddEventType(typeof(UserUpdated));
                     options.Events.AddEventType(typeof(UserDeleted));
+
+                    options.Events.AddEventType(typeof(LocationCreated));
+                    options.Events.AddEventType(typeof(ClientCreated));
                 });
 
                 return documentStore.OpenSession();
@@ -118,6 +137,8 @@ namespace WebApi
             services.AddScoped<IRequestHandler<AddHours>, HoursHandler>();
             services.AddScoped<IRequestHandler<SubstractHours>, HoursHandler>();
             services.AddScoped<IRequestHandler<GetWork, WorkSummaryVm>, GetWorkHandler>();
+
+
             //Users
             services.AddScoped<IRequestHandler<CreateUser>, UsersCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateUsers>, UsersCommandHandler>();
@@ -129,6 +150,28 @@ namespace WebApi
 
             services.AddScoped<IRequestHandler<GetUser, UserVm>, UsersQueryHandler>();
             services.AddScoped<IRequestHandler<GetUsers, List<UserVm>>, UsersQueryHandler>();
+
+
+            //Clients
+            services.AddScoped<IRequestHandler<CreateLocation>, CreateLocationCommandHandler>();
+            services.AddScoped<IRequestHandler<CreateClient>, CreateClientCommandHandler>();
+
+            services.AddScoped<INotificationHandler<ClientCreated>, ClientCreatedEventHandler>();
+            services.AddScoped<INotificationHandler<LocationCreated>, LocationCreatedEventHandler>();
+
+            services.AddScoped<IRequestHandler<GetClient, Clients.Shared.ValueObjects.ClientVm>, GetClientQueryHandler>();
+            services.AddScoped<IRequestHandler<GetLocation, Clients.Shared.ValueObjects.LocationVm>, GetLocationQueryHandler>();
+            
+            
+            //Work
+            services.AddScoped<IRequestHandler<CreateWorker>, CreateWorkerHandler>();
+            services.AddScoped<IRequestHandler<CreateEmployer>, CreateEmplyerHandler>();
+
+            services.AddScoped<INotificationHandler<WorkerCreated>, WorkerCreatedEventHandler>();
+            services.AddScoped<INotificationHandler<EmplyerCreated>, EmployerCreatedEventHandler>();
+
+            services.AddScoped<IRequestHandler<GetWorker, WorkerVm>, GetWorkerQueryHandler>();
+            services.AddScoped<IRequestHandler<GetEmplyer, EmployerVm>, GetEmployerQueryHandler>();
         }
     }
 }

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "aa66328eb156732dd39577cfdf746036a6b2a015"
+    "signature": "79f8883c968fbc8b4206a179e036f0da34d8cced"
   },
   "compilationOptions": {
     "defines": [
@@ -23,7 +23,10 @@
     ".NETCoreApp,Version=v2.0": {
       "WebApi/1.0.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.All": "2.0.6",
+          "Clients.Services": "1.0.0",
+          "Clients.Shared": "1.0.0",
+          "DataBase": "1.0.0",
+          "Microsoft.AspNetCore.All": "2.0.7",
           "Microsoft.NETCore.App": "2.0.0",
           "Users.Services": "1.0.0",
           "Users.Shared": "1.0.0",
@@ -201,7 +204,7 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.dll": {}
         }
       },
-      "Microsoft.AspNetCore.All/2.0.6": {
+      "Microsoft.AspNetCore.All/2.0.7": {
         "dependencies": {
           "Microsoft.AspNetCore": "2.0.2",
           "Microsoft.AspNetCore.Antiforgery": "2.0.2",
@@ -3960,12 +3963,65 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
+      "Clients.Models/1.0.0": {
+        "dependencies": {
+          "Infrastructure.Domain": "1.0.0",
+          "Microsoft.AspNetCore": "2.0.2",
+          "Microsoft.EntityFrameworkCore": "2.0.2",
+          "Microsoft.EntityFrameworkCore.Tools": "2.0.2",
+          "Microsoft.Extensions.Configuration": "2.0.1",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "2.0.1",
+          "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.1",
+          "Works.Models": "1.0.0"
+        },
+        "runtime": {
+          "Clients.Models.dll": {}
+        },
+        "compile": {
+          "Clients.Models.dll": {}
+        }
+      },
+      "Clients.Services/1.0.0": {
+        "dependencies": {
+          "Clients.Models": "1.0.0",
+          "Clients.Shared": "1.0.0",
+          "Infrastructure.Domain": "1.0.0",
+          "Works.Models": "1.0.0"
+        },
+        "runtime": {
+          "Clients.Services.dll": {}
+        },
+        "compile": {
+          "Clients.Services.dll": {}
+        }
+      },
       "Clients.Shared/1.0.0": {
+        "dependencies": {
+          "Infrastructure.Domain": "1.0.0"
+        },
         "runtime": {
           "Clients.Shared.dll": {}
         },
         "compile": {
           "Clients.Shared.dll": {}
+        }
+      },
+      "DataBase/1.0.0": {
+        "dependencies": {
+          "Clients.Models": "1.0.0",
+          "Microsoft.AspNetCore": "2.0.2",
+          "Microsoft.AspNetCore.All": "2.0.7",
+          "Microsoft.EntityFrameworkCore": "2.0.2",
+          "Microsoft.EntityFrameworkCore.Tools": "2.0.2",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "2.0.1",
+          "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.1",
+          "Users.Models": "1.0.0"
+        },
+        "runtime": {
+          "DataBase.dll": {}
+        },
+        "compile": {
+          "DataBase.dll": {}
         }
       },
       "Infrastructure.Domain/1.0.0": {
@@ -4026,8 +4082,11 @@
         "dependencies": {
           "Infrastructure.Domain": "1.0.0",
           "Microsoft.AspNetCore": "2.0.2",
+          "Microsoft.EntityFrameworkCore": "2.0.2",
+          "Microsoft.EntityFrameworkCore.Tools": "2.0.2",
           "Microsoft.Extensions.Configuration": "2.0.1",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "2.0.1",
+          "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.1",
           "Works.Shared": "1.0.0"
         },
         "runtime": {
@@ -4052,7 +4111,6 @@
       },
       "Works.Shared/1.0.0": {
         "dependencies": {
-          "Clients.Shared": "1.0.0",
           "Infrastructure.Domain": "1.0.0"
         },
         "runtime": {
@@ -4302,12 +4360,12 @@
       "path": "microsoft.aspnetcore/2.0.2",
       "hashPath": "microsoft.aspnetcore.2.0.2.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.All/2.0.6": {
+    "Microsoft.AspNetCore.All/2.0.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-5AEYk4hS25RcPkh1kWeKpn487/9Bb3GeVfu8Sl7EOFv9ADXmz7ypVyVlp8FMwgQIJSykzy6kF6KOOduhrWGmSA==",
-      "path": "microsoft.aspnetcore.all/2.0.6",
-      "hashPath": "microsoft.aspnetcore.all.2.0.6.nupkg.sha512"
+      "sha512": "sha512-hpWBRgs094P0jBWJRqBV+8oXl6G+O5ixDAgXI5qouOsg2jlLOmYr1+95+lRbLSn31HhKbQdNel6VQSDUbm0juw==",
+      "path": "microsoft.aspnetcore.all/2.0.7",
+      "hashPath": "microsoft.aspnetcore.all.2.0.7.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Antiforgery/2.0.2": {
       "type": "package",
@@ -6311,7 +6369,22 @@
       "path": "windowsazure.storage/8.1.4",
       "hashPath": "windowsazure.storage.8.1.4.nupkg.sha512"
     },
+    "Clients.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Clients.Services/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Clients.Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DataBase/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

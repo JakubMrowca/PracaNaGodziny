@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Clients.Shared.ValueObjects;
 using Infrastructure.Domain.Queries;
 
-namespace Works.Shared.Queries
+namespace Clients.Shared.Queries
 {
     public class GetLocation:IQuery<LocationVm>
     {

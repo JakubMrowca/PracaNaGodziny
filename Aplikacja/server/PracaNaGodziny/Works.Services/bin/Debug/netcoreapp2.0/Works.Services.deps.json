@@ -1314,11 +1314,6 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
-      "Clients.Shared/1.0.0": {
-        "runtime": {
-          "Clients.Shared.dll": {}
-        }
-      },
       "Infrastructure.Domain/1.0.0": {
         "dependencies": {
           "Marten": "2.7.1",
@@ -1355,8 +1350,11 @@
         "dependencies": {
           "Infrastructure.Domain": "1.0.0",
           "Microsoft.AspNetCore": "2.0.2",
+          "Microsoft.EntityFrameworkCore": "2.0.2",
+          "Microsoft.EntityFrameworkCore.Tools": "2.0.2",
           "Microsoft.Extensions.Configuration": "2.0.1",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "2.0.1",
+          "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.1",
           "Works.Shared": "1.0.0"
         },
         "runtime": {
@@ -1365,7 +1363,6 @@
       },
       "Works.Shared/1.0.0": {
         "dependencies": {
-          "Clients.Shared": "1.0.0",
           "Infrastructure.Domain": "1.0.0"
         },
         "runtime": {
@@ -2296,11 +2293,6 @@
       "sha512": "sha512-FrazwwqfIXTfq23mfv4zH+BjqkSFNaNFBtjzu3I9NRmG8EELYyrv/fJnttCIwRMFRR/YKXF1hmsMmMEnl55HGw==",
       "path": "system.xml.xmlserializer/4.0.11",
       "hashPath": "system.xml.xmlserializer.4.0.11.nupkg.sha512"
-    },
-    "Clients.Shared/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
     },
     "Infrastructure.Domain/1.0.0": {
       "type": "project",

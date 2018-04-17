@@ -7,11 +7,17 @@ namespace Clients.Models.Domain
 {
     public class Location : BaseAggregate
     {
-        public Guid ClientId { get; }
-        public string Name { get; }
-        public string Address { get; }
+        public Guid? ClientId { get; set; }
+        public Client Client { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
 
-        public Location(Guid id, Guid clientId, string name, string address)
+        public Location()
+        {
+
+        }
+
+        public Location(Guid id, string name, string address, Guid? clientId = null)
         {
             Id = id;
             ClientId = clientId;

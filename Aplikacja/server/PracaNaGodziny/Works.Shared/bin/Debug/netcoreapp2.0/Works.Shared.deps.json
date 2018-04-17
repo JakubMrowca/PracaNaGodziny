@@ -8,7 +8,6 @@
     ".NETCoreApp,Version=v2.0": {
       "Works.Shared/1.0.0": {
         "dependencies": {
-          "Clients.Shared": "1.0.0",
           "Infrastructure.Domain": "1.0.0"
         },
         "runtime": {
@@ -686,11 +685,6 @@
           "System.Xml.XmlDocument": "4.0.1"
         }
       },
-      "Clients.Shared/1.0.0": {
-        "runtime": {
-          "Clients.Shared.dll": {}
-        }
-      },
       "Infrastructure.Domain/1.0.0": {
         "dependencies": {
           "Marten": "2.7.1",
@@ -1127,11 +1121,6 @@
       "sha512": "sha512-FrazwwqfIXTfq23mfv4zH+BjqkSFNaNFBtjzu3I9NRmG8EELYyrv/fJnttCIwRMFRR/YKXF1hmsMmMEnl55HGw==",
       "path": "system.xml.xmlserializer/4.0.11",
       "hashPath": "system.xml.xmlserializer.4.0.11.nupkg.sha512"
-    },
-    "Clients.Shared/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
     },
     "Infrastructure.Domain/1.0.0": {
       "type": "project",

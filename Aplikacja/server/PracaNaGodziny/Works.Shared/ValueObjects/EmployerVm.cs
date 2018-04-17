@@ -1,4 +1,4 @@
-﻿using Clients.Shared.ValueObjects;
+﻿//using Clients.Shared.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +13,7 @@ namespace Works.Shared.ValueObjects
         public string Address { get; set; }
         public string AccountNumber { get; set; }
 
-        public List<WorkerInfo> Workers { get; set; }
-        public List<ClientInfo> Clients { get; set; }
+        public List<WorkerVm> Workers { get; set; }
+        public List<ClientVm> Clients { get; set; }
     }
 }

@@ -8,14 +8,20 @@ namespace Clients.Models.Domain
 {
     public class Client : BaseAggregate
     {
-        public Guid EmployerId { get; }
-        //public Emplyer Employer { get; set; }
-        public string FirstName { get; }
-        public string LastName { get; }
-        public string Address { get; }
-        public string Email { get; }
-        public string Phone { get; }
+        public Guid EmployerId { get; set; }
+        public Employer Emplyer { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Address { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public IEnumerable<Location> Locations => _locations;
+        protected readonly ICollection<Location> _locations;
 
+        public Client()
+        {
+            _locations = new List<Location>();
+        }
         public Client(Guid id, Guid employerId, string firstName, string lastName, string address, string email, string phone)
         {
             Id = id;
@@ -25,6 +31,8 @@ namespace Clients.Models.Domain
             Address = address;
             Email = email;
             Phone = phone;
+
+            _locations = new List<Location>();
         }
     }
 }

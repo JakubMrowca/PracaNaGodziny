@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.7" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Clients.Services\Clients.Services.csproj" />
+    <ProjectReference Include="..\Clients.Shared\Clients.Shared.csproj" />
+    <ProjectReference Include="..\DataBase\DataBase.csproj" />
     <ProjectReference Include="..\Users.Services\Users.Services.csproj" />
     <ProjectReference Include="..\Users.Shared\Users.Shared.csproj" />
     <ProjectReference Include="..\Works.Models\Works.Models.csproj" />

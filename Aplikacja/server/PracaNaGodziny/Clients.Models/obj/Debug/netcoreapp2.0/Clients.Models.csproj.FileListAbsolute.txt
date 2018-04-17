@@ -2,7 +2,11 @@ C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGod
 C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Models\bin\Debug\netcoreapp2.0\Clients.Models.dll
 C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Models\bin\Debug\netcoreapp2.0\Clients.Models.pdb
 C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Models\bin\Debug\netcoreapp2.0\Infrastructure.Domain.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Models\bin\Debug\netcoreapp2.0\Works.Models.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Models\bin\Debug\netcoreapp2.0\Works.Shared.dll
 C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Models\bin\Debug\netcoreapp2.0\Infrastructure.Domain.pdb
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Models\bin\Debug\netcoreapp2.0\Works.Models.pdb
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Models\bin\Debug\netcoreapp2.0\Works.Shared.pdb
 C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Models\obj\Debug\netcoreapp2.0\Clients.Models.csprojResolveAssemblyReference.cache
 C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Models\obj\Debug\netcoreapp2.0\Clients.Models.csproj.CoreCompileInputs.cache
 C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Clients.Models\obj\Debug\netcoreapp2.0\Clients.Models.AssemblyInfoInputs.cache

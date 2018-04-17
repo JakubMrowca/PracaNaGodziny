@@ -174,7 +174,7 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.dll": {}
         }
       },
-      "Microsoft.AspNetCore.All/2.0.6": {
+      "Microsoft.AspNetCore.All/2.0.7": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore": "2.0.2",
@@ -4927,6 +4927,75 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
+      "Clients.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Infrastructure.Domain": "1.0.0",
+          "Microsoft.AspNetCore": "2.0.2",
+          "Microsoft.EntityFrameworkCore": "2.0.2",
+          "Microsoft.EntityFrameworkCore.Tools": "2.0.2",
+          "Microsoft.Extensions.Configuration": "2.0.1",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "2.0.1",
+          "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.1",
+          "Works.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Clients.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Clients.Models.dll": {}
+        }
+      },
+      "Clients.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Clients.Models": "1.0.0",
+          "Clients.Shared": "1.0.0",
+          "Infrastructure.Domain": "1.0.0",
+          "Works.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Clients.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Clients.Services.dll": {}
+        }
+      },
+      "Clients.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Infrastructure.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Clients.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Clients.Shared.dll": {}
+        }
+      },
+      "DataBase/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Clients.Models": "1.0.0",
+          "Microsoft.AspNetCore": "2.0.2",
+          "Microsoft.AspNetCore.All": "2.0.7",
+          "Microsoft.EntityFrameworkCore": "2.0.2",
+          "Microsoft.EntityFrameworkCore.Tools": "2.0.2",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "2.0.1",
+          "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.1",
+          "Users.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DataBase.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataBase.dll": {}
+        }
+      },
       "Infrastructure.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
@@ -4995,8 +5064,11 @@
         "dependencies": {
           "Infrastructure.Domain": "1.0.0",
           "Microsoft.AspNetCore": "2.0.2",
+          "Microsoft.EntityFrameworkCore": "2.0.2",
+          "Microsoft.EntityFrameworkCore.Tools": "2.0.2",
           "Microsoft.Extensions.Configuration": "2.0.1",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "2.0.1",
+          "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.1",
           "Works.Shared": "1.0.0"
         },
         "compile": {
@@ -5153,10 +5225,10 @@
         "microsoft.aspnetcore.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.All/2.0.6": {
-      "sha512": "5AEYk4hS25RcPkh1kWeKpn487/9Bb3GeVfu8Sl7EOFv9ADXmz7ypVyVlp8FMwgQIJSykzy6kF6KOOduhrWGmSA==",
+    "Microsoft.AspNetCore.All/2.0.7": {
+      "sha512": "hpWBRgs094P0jBWJRqBV+8oXl6G+O5ixDAgXI5qouOsg2jlLOmYr1+95+lRbLSn31HhKbQdNel6VQSDUbm0juw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.all/2.0.6",
+      "path": "microsoft.aspnetcore.all/2.0.7",
       "files": [
         "build/PublishWithAspNetCoreTargetManifest.targets",
         "build/aspnetcore-store-2.0.0-common.xml",
@@ -5167,9 +5239,10 @@
         "build/aspnetcore-store-2.0.3.xml",
         "build/aspnetcore-store-2.0.5.xml",
         "build/aspnetcore-store-2.0.6.xml",
+        "build/aspnetcore-store-2.0.7.xml",
         "build/netcoreapp2.0/Microsoft.AspNetCore.All.targets",
         "lib/netcoreapp2.0/_._",
-        "microsoft.aspnetcore.all.2.0.6.nupkg.sha512",
+        "microsoft.aspnetcore.all.2.0.7.nupkg.sha512",
         "microsoft.aspnetcore.all.nuspec"
       ]
     },
@@ -12974,6 +13047,26 @@
         "windowsazure.storage.nuspec"
       ]
     },
+    "Clients.Models/1.0.0": {
+      "type": "project",
+      "path": "../Clients.Models/Clients.Models.csproj",
+      "msbuildProject": "../Clients.Models/Clients.Models.csproj"
+    },
+    "Clients.Services/1.0.0": {
+      "type": "project",
+      "path": "../Clients.Services/Clients.Services.csproj",
+      "msbuildProject": "../Clients.Services/Clients.Services.csproj"
+    },
+    "Clients.Shared/1.0.0": {
+      "type": "project",
+      "path": "../Clients.Shared/Clients.Shared.csproj",
+      "msbuildProject": "../Clients.Shared/Clients.Shared.csproj"
+    },
+    "DataBase/1.0.0": {
+      "type": "project",
+      "path": "../DataBase/DataBase.csproj",
+      "msbuildProject": "../DataBase/DataBase.csproj"
+    },
     "Infrastructure.Domain/1.0.0": {
       "type": "project",
       "path": "../../../../../PracaNaGodziny/Aplikacja/webApi/PracaNaGodziny/Infrastructure.Domain/Infrastructure.Domain.csproj",
@@ -13012,7 +13105,10 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
-      "Microsoft.AspNetCore.All >= 2.0.6",
+      "Clients.Services >= 1.0.0",
+      "Clients.Shared >= 1.0.0",
+      "DataBase >= 1.0.0",
+      "Microsoft.AspNetCore.All >= 2.0.7",
       "Microsoft.NETCore.App >= 2.0.0",
       "Users.Services >= 1.0.0",
       "Users.Shared >= 1.0.0",
@@ -13053,6 +13149,15 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
+            "C:\\Users\\jakubm.ASTOR\\Desktop\\PracaNaGodziny\\Projekt\\Aplikacja\\server\\PracaNaGodziny\\Clients.Services\\Clients.Services.csproj": {
+              "projectPath": "C:\\Users\\jakubm.ASTOR\\Desktop\\PracaNaGodziny\\Projekt\\Aplikacja\\server\\PracaNaGodziny\\Clients.Services\\Clients.Services.csproj"
+            },
+            "C:\\Users\\jakubm.ASTOR\\Desktop\\PracaNaGodziny\\Projekt\\Aplikacja\\server\\PracaNaGodziny\\Clients.Shared\\Clients.Shared.csproj": {
+              "projectPath": "C:\\Users\\jakubm.ASTOR\\Desktop\\PracaNaGodziny\\Projekt\\Aplikacja\\server\\PracaNaGodziny\\Clients.Shared\\Clients.Shared.csproj"
+            },
+            "C:\\Users\\jakubm.ASTOR\\Desktop\\PracaNaGodziny\\Projekt\\Aplikacja\\server\\PracaNaGodziny\\DataBase\\DataBase.csproj": {
+              "projectPath": "C:\\Users\\jakubm.ASTOR\\Desktop\\PracaNaGodziny\\Projekt\\Aplikacja\\server\\PracaNaGodziny\\DataBase\\DataBase.csproj"
+            },
             "C:\\Users\\jakubm.ASTOR\\Desktop\\PracaNaGodziny\\Projekt\\Aplikacja\\server\\PracaNaGodziny\\Users.Services\\Users.Services.csproj": {
               "projectPath": "C:\\Users\\jakubm.ASTOR\\Desktop\\PracaNaGodziny\\Projekt\\Aplikacja\\server\\PracaNaGodziny\\Users.Services\\Users.Services.csproj"
             },
@@ -13079,7 +13184,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.All": {
             "target": "Package",
-            "version": "[2.0.6, )"
+            "version": "[2.0.7, )"
           },
           "Microsoft.NETCore.App": {
             "target": "Package",

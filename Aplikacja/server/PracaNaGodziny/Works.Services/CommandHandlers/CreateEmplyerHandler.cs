@@ -21,7 +21,7 @@ namespace Works.Services.CommandHandlers
         private WorkDbContext _workDbContext;
 
         private DbSet<User> _users;
-        private DbSet<Emplyer> _emplyers;
+        private DbSet<Employer> _emplyers;
 
         public CreateEmplyerHandler(WorkDbContext workDbContext, UsersDbContext userDbContext, IEventBus eventBus)
         {
@@ -40,7 +40,7 @@ namespace Works.Services.CommandHandlers
         {
             var user = await _users.FindAsync(command.UserId);
 
-            await _emplyers.AddAsync(new Emplyer(
+            await _emplyers.AddAsync(new Employer(
                 command.Id, 
                 user.Id, 
                 command.Data.FirstName, 

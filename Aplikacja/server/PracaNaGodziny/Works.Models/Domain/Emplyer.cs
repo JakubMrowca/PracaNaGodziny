@@ -7,17 +7,22 @@ using Works.Shared.ValueObjects;
 
 namespace Works.Models.Domain
 {
-    public class Emplyer: BaseAggregate
+    public class Employer: BaseAggregate
     {
-        public Guid UserId { get; private set; }
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
-        public string Address { get; private set; }
-        public string AccountNumber { get; private set; }
-        public int WorkerCount { get; private set; }
-        public int LocationCount { get; private set; }
+        public Guid UserId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Address { get; set; }
+        public string AccountNumber { get; set; }
+        public int WorkerCount { get; set; }
+        public int LocationCount { get; set; }
 
-        public Emplyer(Guid id, Guid userId, string firstName, string lastName, string address, string accountNumber)
+        public Employer()
+        {
+
+        }
+
+        public Employer(Guid id, Guid userId, string firstName, string lastName, string address, string accountNumber)
         {
             Id = id;
             UserId = userId;

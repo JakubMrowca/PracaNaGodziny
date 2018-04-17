@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Works.Shared.Queries;
 
 namespace Clients.Shared.ValueObjects
 {
@@ -12,5 +13,9 @@ namespace Clients.Shared.ValueObjects
         public string Address { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public List<LocationVm> Locations { get; set; }
+
+        public string EmployerName { get; set; }
+        public Guid EmployerId { get; set; }
     }
 }

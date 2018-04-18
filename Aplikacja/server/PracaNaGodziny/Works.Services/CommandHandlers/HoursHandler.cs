@@ -25,7 +25,7 @@ namespace Works.Services.CommandHandlers
         {
             var workFor = await _store.AggregateStreamAsync<Work>(command.WorkId, token: cancellationToken);
 
-            workFor.RecordInflow(command.Hours,command.AddidtionalRate);
+            workFor.RecordInflow(command.TimeStamp, command.Hours,command.AddidtionalRate);
             _store.Append(workFor.Id, workFor.PendingEvents.ToArray());
 
             await _session.SaveChangesAsync(cancellationToken);
@@ -35,7 +35,7 @@ namespace Works.Services.CommandHandlers
         {
             var workFor = await _store.AggregateStreamAsync<Work>(command.WorkId, token: cancellationToken);
 
-            workFor.RecordOutflow(command.Hours);
+            workFor.RecordOutflow(command.TimeStamp, command.Hours);
             _store.Append(workFor.Id, workFor.PendingEvents.ToArray());
 
             await _session.SaveChangesAsync(cancellationToken);

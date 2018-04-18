@@ -6,15 +6,15 @@ using Works.Shared.ValueObjects;
 
 namespace Works.Shared.Queries
 {
-    public class GetWorker : IQuery<WorkerVm>
+    public class GetWorksForWorker:IQuery<List<WorkSummaryVm>>
     {
-        public Guid Id { get; }
+        public Guid WorkerId { get; }
         public DateTime? From { get; set; }
         public DateTime? To { get; set; }
 
-        public GetWorker(Guid id, DateTime? from = null, DateTime? to = null)
+        public GetWorksForWorker(Guid workerId, DateTime? from = null, DateTime? to = null)
         {
-            Id = id;
+            WorkerId = workerId;
             From = from;
             To = to;
         }

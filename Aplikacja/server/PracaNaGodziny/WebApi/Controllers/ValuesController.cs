@@ -35,21 +35,77 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<string>> Get()
         {
-            
+            var work1Id = Guid.NewGuid();
+            var command = new CreateNewWork()
+            {
+                Id = work1Id,
+                WorkerId = Guid.Parse("bd6f9d97-8ebb-44bf-8b3c-0f424d1d9f26"),
+                LocationId = Guid.Parse("495465c6-0d82-4a32-b91b-b9de100185ea"),
+                Rate = 15
+            };
+            await _commandBus.Send(command);
 
-            //var commandSub = new SubstractHours
-            //{
-            //    WorkId = Guid.Parse("ea9b0106-61e5-4af6-956d-6774b18c4328"),
-            //    Hours = 15
-            //};
-            //await _commandBus.Send(commandSub);
+            //    var work2Id = Guid.NewGuid();
+            //    var command2 = new CreateNewWork()
+            //    {
+            //        Id = work2Id,
+            //        WorkerId = Guid.Parse("bd6f9d97-8ebb-44bf-8b3c-0f424d1d9f26"),
+            //        LocationId = Guid.NewGuid(),
+            //        Rate = 15
+            //    };
+            //    await _commandBus.Send(command2);
 
-            //command = new AddHours
+            //    var work3Id = Guid.NewGuid();
+            //    var command3 = new CreateNewWork()
+            //    {
+            //        Id = work3Id,
+            //        WorkerId = Guid.Parse("bd6f9d97-8ebb-44bf-8b3c-0f424d1d9f26"),
+            //        LocationId = Guid.NewGuid(),
+            //        Rate = 15
+            //    };
+            //    await _commandBus.Send(command3);
+
+            //var commandAdd = new AddHours
             //{
-            //    WorkId = Guid.Parse("ea9b0106-61e5-4af6-956d-6774b18c4328"),
-            //    Hours = 10
+            //    WorkId = work1Id,
+            //    Hours = 20
             //};
-            //await _commandBus.Send(command);
+            //await _commandBus.Send(commandAdd);
+
+            //    var commandSub = new SubstractHours
+            //    {
+            //        WorkId = work1Id,
+            //        Hours = 15
+            //    };
+            //    await _commandBus.Send(commandSub);
+
+            //    commandAdd = new AddHours
+            //    {
+            //        WorkId = work2Id,
+            //        Hours = 23
+            //    };
+            //    await _commandBus.Send(commandAdd);
+
+            //    commandAdd = new AddHours
+            //    {
+            //        WorkId = work2Id,
+            //        Hours = 5
+            //    };
+            //    await _commandBus.Send(commandAdd);
+
+            //    commandAdd = new AddHours
+            //    {
+            //        WorkId = work3Id,
+            //        Hours = 7
+            //    };
+            //    await _commandBus.Send(commandAdd);
+
+            //    commandSub = new SubstractHours()
+            //    {
+            //        WorkId = work3Id,
+            //        Hours = 5
+            //    };
+            //    await _commandBus.Send(commandSub);
 
             return new string[] { "value1", "value2" };
         }
@@ -61,7 +117,7 @@ namespace WebApi.Controllers
 
         // GET api/values/5
         [HttpGet("user/{userId}")]
-        public async Task<UserVm> GetUser(Guid userId)
+        public async Task<WorkSummaryVm> GetUser(Guid userId)
         {
             //var guid = Guid.NewGuid();
             //var command = new CreateUser(guid,
@@ -73,7 +129,7 @@ namespace WebApi.Controllers
             //    });
 
             //await _commandBus.Send(command);
-            return await _queryBus.Send<GetUser, UserVm>(new GetUser(userId));
+            return await _queryBus.Send<GetWork, WorkSummaryVm>(new GetWork(userId));
         }
 
         [HttpGet("employer/{userId}")]

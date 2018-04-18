@@ -7,6 +7,7 @@ namespace Works.Shared.Commands
 {
     public class CreateNewWork : ICommand
     {
+        public Guid Id { get; set; }
         public Guid WorkerId { get; set; }
         public Guid LocationId { get; set; }
         public double Rate { get; set; }

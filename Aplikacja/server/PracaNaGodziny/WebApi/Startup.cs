@@ -136,7 +136,7 @@ namespace WebApi
             services.AddScoped<IRequestHandler<CreateNewWork>, CreateWorkHandler>();
             services.AddScoped<IRequestHandler<AddHours>, HoursHandler>();
             services.AddScoped<IRequestHandler<SubstractHours>, HoursHandler>();
-            services.AddScoped<IRequestHandler<GetWork, WorkSummaryVm>, GetWorkHandler>();
+            services.AddScoped<IRequestHandler<GetWork, WorkSummaryVm>, GetWorkQueryHandler>();
 
 
             //Users
@@ -172,6 +172,7 @@ namespace WebApi
 
             services.AddScoped<IRequestHandler<GetWorker, WorkerVm>, GetWorkerQueryHandler>();
             services.AddScoped<IRequestHandler<GetEmplyer, EmployerVm>, GetEmployerQueryHandler>();
+            services.AddScoped<IRequestHandler<GetWorksForWorker, List<WorkSummaryVm>>, GetWorksForWorkerQueryHandler>();
         }
     }
 }

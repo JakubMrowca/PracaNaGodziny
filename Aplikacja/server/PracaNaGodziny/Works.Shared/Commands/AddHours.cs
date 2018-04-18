@@ -10,5 +10,6 @@ namespace Works.Shared.Commands
         public Guid WorkId { get; set; }
         public double Hours { get; set; }
         public double? AddidtionalRate { get; set; }
+        public DateTime TimeStamp { get; set; }
     }
 }

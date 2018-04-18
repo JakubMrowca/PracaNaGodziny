@@ -28,7 +28,7 @@ namespace Works.Services.CommandHandlers
             //if (!_session.Query<ClientsView>().Any(c => c.Id == command.ClientId))
             //    throw new ArgumentException("Client does not exist!", nameof(command.ClientId));
 
-            var work = new Work(command.WorkerId, command.LocationId, command.Rate);
+            var work = new Work(command.Id, command.WorkerId, command.LocationId, command.Rate);
 
             _store.Append(work.Id, work.PendingEvents.ToArray());
             return _session.SaveChangesAsync(cancellationToken);

@@ -7,15 +7,23 @@ using Works.Shared.Events;
 
 namespace Works.Models.View
 {
-    public class WorkSummaryViewProjection: ViewProjection<WorkSummaryView, Guid>
+    public class WorkSummaryViewProjection : ViewProjection<WorkSummaryView, Guid>
     {
         public WorkSummaryViewProjection()
-    {
-        ProjectEvent<NewWorkCreated>(e => e.WorkId, (w, @event) => w.Apply(@event));
-        ProjectEvent<NewInflowRecorded>((ev) => ev.ForWorkId, (view, @event) => view.Apply(@event));
-        
-        ProjectEvent<NewOutflowRecorded>((ev) => ev.ForWorkId, (view, @event) => view.Apply(@event));
-    }
+        {
+            ProjectEvent<NewWorkCreated>(e => e.WorkId, (w, @event) => w.Apply(@event));
+            ////ProjectEvent<TimePeriodSet>(ev => ev.WorkId, (view, @event) => view.Apply(@event));
+            //ProjectEvent<NewInflowRecorded>((ev) => ev.ForWorkId, (view, @event) =>
+            //{
+            //    view.Apply(@event);
+            //});
 
-}
+            //ProjectEvent<NewOutflowRecorded>((ev) => ev.ForWorkId, (view, @event) =>
+            //{
+
+            //    view.Apply(@event);
+            //});
+        }
+
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Domain.Commands;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,7 +18,8 @@ namespace Users.Services.CommandHandlers
     public class UsersCommandHandler :
         ICommandHandler<CreateUser>,
         ICommandHandler<UpdateUsers>,
-        ICommandHandler<DeleteUser>
+        ICommandHandler<DeleteUser>,
+        ICommandHandler<AuthorizeUser>
     {
 
         private readonly UsersDbContext dbContext;
@@ -66,6 +68,16 @@ namespace Users.Services.CommandHandlers
 
             await dbContext.SaveChangesAsync(cancellationToken);
             await eventBus.Publish(new UserDeleted(command.Id));
+        }
+
+        public async Task Handle(AuthorizeUser command, CancellationToken cancellationToken)
+        {
+            var user = Users
+                .Where(x => x.Arch == false)
+                .Where(x => x.Login == command.Login && x.Password == command.Password)
+                .FirstOrDefaultAsync(cancellationToken);
+            if (user == null)
+                throw new NotImplementedException();
         }
     }
 }

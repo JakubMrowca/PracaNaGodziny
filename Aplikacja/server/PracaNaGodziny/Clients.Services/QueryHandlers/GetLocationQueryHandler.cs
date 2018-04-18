@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 using Clients.Models.Domain;
 using Clients.Models.Storage;
 using Clients.Shared.Queries;
-using Clients.Shared.ValueObjects;
 using Works.Shared.Queries;
 using Microsoft.EntityFrameworkCore;
+using Works.Shared.ValueObjects;
+using ClientVm = Clients.Shared.ValueObjects.ClientVm;
+using LocationVm = Clients.Shared.ValueObjects.LocationVm;
 
 namespace Clients.Services.QueryHandlers
 {
@@ -18,10 +20,12 @@ namespace Clients.Services.QueryHandlers
     {
         private readonly IQueryable<Location> _locations;
         private readonly IQueryable<Client> _clients;
+        private readonly IQueryBus _queryBus;
 
-        public GetLocationQueryHandler(ClientsDbContext clientsDbContext)
+        public GetLocationQueryHandler(ClientsDbContext clientsDbContext, IQueryBus queryBus)
         {
             _clients = clientsDbContext.Clients;
+            _queryBus = queryBus;
             _locations = clientsDbContext.Locations;
         }
 
@@ -34,6 +38,9 @@ namespace Clients.Services.QueryHandlers
             var client = await _clients
                 .Where(x => x.Arch == false && x.Id == location.ClientId)
                 .FirstOrDefaultAsync(cancellationToken);
+
+            var worksForLocation = await _queryBus.Send<GetWorksForLocation, List<WorkSummaryVm>>
+                (new GetWorksForLocation(location.Id, message.From, message.To));
 
             return new LocationVm
             {
@@ -51,8 +58,15 @@ namespace Clients.Services.QueryHandlers
                     LastName = client.LastName,
                     Phone = client.Phone,
                     EmployerId = client.EmployerId
-                }
-             
+                },
+                PaidHour = worksForLocation.Sum(x => x.PaidHour),
+                TotalHour = worksForLocation.Sum(x => x.UnpaidHour),
+                Wage = worksForLocation.Sum(x => x.Wage),
+                TotalHourInThisMonth = worksForLocation.Sum(x => x.TotalHourInThisMonth),
+                PaidHourInThisMonth = worksForLocation.Sum(x => x.PaidHourInThisMonth),
+                PaidHourInThisWeek = worksForLocation.Sum(x => x.PaidHourInThisWeek),
+                TotalHourInThisWeek = worksForLocation.Sum(x => x.TotalHourInThisWeek),
+                TotalHourInLastMonth = worksForLocation.Sum(x => x.TotalHourInLastMonth),
             };
         }
     }

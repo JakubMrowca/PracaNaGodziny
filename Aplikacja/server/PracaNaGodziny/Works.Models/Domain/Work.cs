@@ -15,7 +15,7 @@ namespace Works.Models.Domain
         public double Rate { get; private set; }
         public decimal Wage { get; private set; }
 
-        public double UnpaidHour { get; private set; }
+        public double TotalHour { get; private set; }
         public double PaidHour { get; private set; }
         public double AdditionalHour { get; private set; }
         public decimal AdditionalWage { get; private set; }
@@ -24,11 +24,13 @@ namespace Works.Models.Domain
         {
         }
 
-        public Work(Guid workerId, Guid locationId, double rate)
+        public Work(Guid id, Guid workerId, Guid locationId, double rate)
         {
+            Id = id;
+
             var @event = new NewWorkCreated
             {
-                WorkId = Guid.NewGuid(),
+                WorkId = id,
                 WorkerId = workerId,
                 LocationId = locationId,
                 Rate = rate
@@ -38,16 +40,16 @@ namespace Works.Models.Domain
             Append(@event);
         }
 
-        public void RecordInflow(double hours, double? additionalRate)
+        public void RecordInflow(DateTime timeStamp, double hours, double? additionalRate)
         {
-            var @event = new NewInflowRecorded(Id, new InFlow(DateTime.Now, hours, additionalRate));
+            var @event = new NewInflowRecorded(Id, new InFlow(timeStamp, hours, additionalRate));
             Apply(@event);
             Append(@event);
         }
 
-        public void RecordOutflow(double hours)
+        public void RecordOutflow(DateTime timeStamp, double hours)
         {
-            var @event = new NewOutflowRecorded(Id, new OutFlow(DateTime.Now, hours));
+            var @event = new NewOutflowRecorded(Id, new OutFlow(timeStamp, hours));
             Apply(@event);
             Append(@event);
         }
@@ -65,7 +67,7 @@ namespace Works.Models.Domain
             if (!@event.Inflow.AdditionalRate.HasValue)
             {
                 Wage += Convert.ToDecimal(@event.Inflow.Hours * Rate);
-                UnpaidHour += @event.Inflow.Hours;
+                TotalHour += @event.Inflow.Hours;
             }
             else
             {
@@ -78,7 +80,7 @@ namespace Works.Models.Domain
         {
             Wage -= Convert.ToDecimal(@event.OutFlow.Hours * Rate);
             PaidHour += @event.OutFlow.Hours;
-            UnpaidHour -= @event.OutFlow.Hours;
+            TotalHour -= @event.OutFlow.Hours;
         }
     }
 }

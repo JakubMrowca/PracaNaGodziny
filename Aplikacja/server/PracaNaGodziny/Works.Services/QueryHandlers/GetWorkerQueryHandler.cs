@@ -19,10 +19,12 @@ namespace Works.Services.QueryHandlers
         private readonly IQueryable<Employer> _employers;
         private readonly IQueryable<Worker> _workers;
         private readonly IQueryable<LocationRef> _locations;
+        private readonly IQueryBus _queryBus;
 
-        public GetWorkerQueryHandler(WorkDbContext workDbContext)
+        public GetWorkerQueryHandler(WorkDbContext workDbContext, IQueryBus queryBus)
         {
 
+            _queryBus = queryBus;
             _workers = workDbContext.Workers;
             _locations = workDbContext.Locations;
             _employers = workDbContext.Employers;
@@ -38,13 +40,26 @@ namespace Works.Services.QueryHandlers
                 .Where(x => x.Arch == false && x.Id == worker.EmployerId)
                 .FirstOrDefaultAsync(cancellationToken);
 
+            var worksForWorker = await
+                _queryBus.Send<GetWorksForWorker, List<WorkSummaryVm>>(new GetWorksForWorker(worker.Id,message.From,message.To));
+
             return new WorkerVm
             {
                 Address = worker.Address,
+                Works = worksForWorker,
                 FirstName = worker.FirstName,
                 LastName = worker.LastName,
                 Employer = MapEmployerToVm(employer),
-                Id = worker.Id
+                Id = worker.Id,
+                PaidHour = worksForWorker.Sum(x => x.PaidHour),
+                TotalHour = worksForWorker.Sum(x => x.UnpaidHour),
+                Wage = worksForWorker.Sum(x => x.Wage),
+                TotalHourInThisMonth = worksForWorker.Sum(x => x.TotalHourInThisMonth),
+                PaidHourInThisMonth = worksForWorker.Sum(x => x.PaidHourInThisMonth),
+                PaidHourInThisWeek = worksForWorker.Sum(x => x.PaidHourInThisWeek),
+                TotalHourInThisWeek = worksForWorker.Sum(x => x.TotalHourInThisWeek),
+                TotalHourInLastMonth = worksForWorker.Sum(x => x.TotalHourInLastMonth),
+                
             };
 
         }

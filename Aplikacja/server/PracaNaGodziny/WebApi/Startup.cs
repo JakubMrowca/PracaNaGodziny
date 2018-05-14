@@ -28,6 +28,7 @@ using Users.Models.View;
 using Users.Services.CommandHandlers;
 using Users.Services.EventHandlers;
 using Users.Services.QueryHandlers;
+using Users.Services.Services;
 using Users.Shared.Commands;
 using Users.Shared.Events;
 using Users.Shared.Queries;
@@ -38,6 +39,7 @@ using Works.Models.View;
 using Works.Services.CommandHandlers;
 using Works.Services.EventHandlers;
 using Works.Services.QueryHandlers;
+using Works.Services.Services;
 using Works.Shared.Commands;
 using Works.Shared.Events;
 using Works.Shared.Queries;
@@ -57,7 +59,8 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            ConfigureCors(services);
+            ConfigureMvc(services);
 
             ConfigureEf(services);
             ConfigureMediator(services);
@@ -73,8 +76,24 @@ namespace WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("MyPolicy");
             app.UseMvc();
             var z = new Work();
+        }
+
+        private static void ConfigureCors(IServiceCollection services)
+        {
+            services.AddCors(options => options.AddPolicy("MyPolicy", builder =>
+                builder.AllowAnyHeader()
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowCredentials()));
+        }
+
+        private void ConfigureMvc(IServiceCollection services)
+        {
+            services.AddSingleton(Configuration);
+            services.AddMvc();
         }
 
         private void ConfigureEf(IServiceCollection services)
@@ -132,6 +151,8 @@ namespace WebApi
             services.AddScoped<ICommandBus, CommandBus>();
             services.AddScoped<IQueryBus, QueryBus>();
             services.AddScoped<IEventBus, EventBus>();
+            services.AddSingleton<ILoggedUserService, LoggedUserService>();
+            services.AddScoped<IPhotoServices, PhotoServices>();
 
             services.AddScoped<IRequestHandler<CreateNewWork>, CreateWorkHandler>();
             services.AddScoped<IRequestHandler<AddHours>, HoursHandler>();
@@ -143,13 +164,14 @@ namespace WebApi
             services.AddScoped<IRequestHandler<CreateUser>, UsersCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateUsers>, UsersCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteUser>, UsersCommandHandler>();
+            services.AddScoped<IRequestHandler<AuthorizeUser>, UsersCommandHandler>();
 
             services.AddScoped<INotificationHandler<UserCreated>, UsersEventHandler>();
             services.AddScoped<INotificationHandler<UserUpdated>, UsersEventHandler>();
             services.AddScoped<INotificationHandler<UserDeleted>, UsersEventHandler>();
 
-            services.AddScoped<IRequestHandler<GetUser, UserVm>, UsersQueryHandler>();
-            services.AddScoped<IRequestHandler<GetUsers, List<UserVm>>, UsersQueryHandler>();
+            services.AddScoped<IRequestHandler<GetUser, Users.Shared.ValueObjects.UserVm>, UsersQueryHandler>();
+            services.AddScoped<IRequestHandler<GetUsers, List<Users.Shared.ValueObjects.UserVm>>, UsersQueryHandler>();
 
 
             //Clients
@@ -166,13 +188,18 @@ namespace WebApi
             //Work
             services.AddScoped<IRequestHandler<CreateWorker>, CreateWorkerHandler>();
             services.AddScoped<IRequestHandler<CreateEmployer>, CreateEmplyerHandler>();
+            services.AddScoped<IRequestHandler<AddWorkerForEmployer>, CreateWorkerHandler>();
 
             services.AddScoped<INotificationHandler<WorkerCreated>, WorkerCreatedEventHandler>();
             services.AddScoped<INotificationHandler<EmplyerCreated>, EmployerCreatedEventHandler>();
 
             services.AddScoped<IRequestHandler<GetWorker, WorkerVm>, GetWorkerQueryHandler>();
+            services.AddScoped<IRequestHandler<GetWorkersForEmployer, List<WorkerVm>>, GetWorkersForEmployerQueryHandler>();
             services.AddScoped<IRequestHandler<GetEmplyer, EmployerVm>, GetEmployerQueryHandler>();
             services.AddScoped<IRequestHandler<GetWorksForWorker, List<WorkSummaryVm>>, GetWorksForWorkerQueryHandler>();
+            services.AddScoped<IRequestHandler<GetForUser, Works.Shared.ValueObjects.UserVm>, GetForUserQueryHandler>();
+            services.AddScoped<IRequestHandler<AddPhotoForEmployer>, AddPhotoHandler>();
+
         }
     }
 }

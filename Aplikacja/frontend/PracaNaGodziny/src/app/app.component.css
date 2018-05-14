@@ -1,0 +1,12 @@
+body{
+    margin: 0!important;
+}
+.example-card{
+    background-color: inherit!important;
+    box-shadow: none!important;
+    padding: 7px 0px 0px 4px!important;
+}
+.mat-tolbarPadding{
+    padding-left: 2px!important;
+    padding-right: 2px!important;
+}

@@ -1,0 +1,54 @@
+<div>
+  <mat-tab-group>
+    <mat-tab label="Logowanie">
+      <div style="margin:20px">
+        <mat-form-field>
+          <input matInput type="text" [(ngModel)]='authorizeUserCommand.email' required placeholder="E-mail">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput type="password"  [(ngModel)]='authorizeUserCommand.password' required placeholder="Haslo">
+        </mat-form-field>
+        <br>
+        <button color="primary" mat-raised-button (click)='login()'>Zaloguj</button>
+      </div>
+    </mat-tab>
+    <mat-tab label="Rejestracja">
+      <div style="margin:20px">
+        <form #personForm="ngForm" (submit)="onSubmit(personForm)" >
+          <mat-form-field>
+            <input matInput type="email" required [(ngModel)]='createUserCommand.email' name="email" placeholder="E-mail">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput type="password" required [(ngModel)]='createUserCommand.password' name="password" placeholder="Hasło">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput type="password" required [(ngModel)]='reapetPassword' name="repeatPassword" placeholder="Powtórz hasło">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]='createUserCommand.firstName' name="firstName" placeholder="Imie">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]='createUserCommand.lastName' name="lastName" placeholder="Nazwisko">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]='createUserCommand.address' name="address" placeholder="Adres">
+          </mat-form-field>
+          <br>
+          <mat-checkbox style="margin-right:20px" [(ngModel)]='createUserCommand.isEmployer' name="isEmployer">Pracodawca</mat-checkbox>
+          <mat-checkbox [(ngModel)]='createUserCommand.isWorker' name="isWorker" >Pracownik</mat-checkbox>
+          <br>
+          <br>
+          <button color="warn" mat-raised-button (click)='clear()'>Wyczyść</button>
+          <button type="submit" color="primary" mat-raised-button >Rejestruj</button>
+        </form>
+      </div>
+
+    </mat-tab>
+  </mat-tab-group>
+</div>

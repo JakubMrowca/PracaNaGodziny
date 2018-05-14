@@ -1,0 +1,22 @@
+<mat-toolbar class="mat-tolbarEmployer" color="primary">
+<button (click)="add()" mat-button><i class="material-icons">add_box</i>Dodaj</button>
+<button mat-button><i class="material-icons">check_box</i>Zaznacz</button>
+<button mat-button><i class="material-icons">build</i>Praca</button>
+</mat-toolbar>
+<div>
+    <mat-tab-group>
+      <mat-tab label="Pracownicy">
+        <div style="margin:20px">
+            <app-worker-card [worker]="worker" *ngFor="worke in workers"></app-worker-card>
+        </div>
+      </mat-tab>
+      <mat-tab label="Klienci">
+        <div style="margin:20px">
+        </div>
+      </mat-tab>
+      <mat-tab label="Miejsc">
+          <div style="margin:20px">
+          </div>
+        </mat-tab>
+    </mat-tab-group>
+  </div>

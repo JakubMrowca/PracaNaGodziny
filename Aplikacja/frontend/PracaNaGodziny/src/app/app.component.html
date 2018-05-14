@@ -1,0 +1,19 @@
+<mat-toolbar class="mat-tolbarPadding" color="primary">
+    <mat-card [matMenuTriggerFor]="menu" *ngIf="checkUser()" class="example-card">
+        <mat-card-header>
+            <div id="Photo" mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{employerName}}</mat-card-title>
+        </mat-card-header>
+    </mat-card>
+    <h1 style="margin-left: 10px" *ngIf="!checkUser()">Logowanie</h1>
+
+    <div style="text-align: right;width: 100%" class="link">
+        <mat-menu #menu="matMenu">
+            <a mat-menu-item [routerLink]="['/profil']">Profil</a>
+            <a mat-menu-item (click)="logout()">Wyloguj</a>
+        </mat-menu>
+    </div>
+</mat-toolbar>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

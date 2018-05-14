@@ -1620,7 +1620,7 @@
     "Microsoft.Extensions.Configuration.FileExtensions/2.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ig55mY9fpfvVbQLuiT1ETjpYuI33RiSfhdon0nfl3m9cRSCJrrq2X7MXus2ihh2eW3ev+jPBHWNOFjN0YRN3cg==",
+      "sha512": "sha512-BsapXAviPmlbgIdGUHSo1Dk5Wes3FRHq+uuXxux2gMOxAFc0s5kwvuFIL7poBZzIDCs4/JCyF5RwqWQ8SM/iFA==",
       "path": "microsoft.extensions.configuration.fileextensions/2.0.1",
       "hashPath": "microsoft.extensions.configuration.fileextensions.2.0.1.nupkg.sha512"
     },

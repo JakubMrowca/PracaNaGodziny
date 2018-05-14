@@ -11,6 +11,7 @@ namespace Clients.Models.Domain
         public Client Client { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
+        public byte[] Photo { get; set; }
 
         public Location()
         {

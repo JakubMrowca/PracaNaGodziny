@@ -6,3 +6,4 @@ C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGod
 C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Services\obj\Debug\netcoreapp2.0\Notifications.Services.AssemblyInfo.cs
 C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Services\obj\Debug\netcoreapp2.0\Notifications.Services.dll
 C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Services\obj\Debug\netcoreapp2.0\Notifications.Services.pdb
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Services\obj\Debug\netcoreapp2.0\Notifications.Services.csprojResolveAssemblyReference.cache

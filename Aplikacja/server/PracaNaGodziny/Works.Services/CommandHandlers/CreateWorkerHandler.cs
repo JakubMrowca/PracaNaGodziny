@@ -15,7 +15,8 @@ using Works.Shared.Events;
 
 namespace Works.Services.CommandHandlers
 {
-    public class CreateWorkerHandler : ICommandHandler<CreateWorker>
+    public class CreateWorkerHandler : ICommandHandler<CreateWorker>,
+        ICommandHandler<AddWorkerForEmployer>
     {
         private readonly IEventBus _eventBus;
         private WorkDbContext _workDbContext;
@@ -61,6 +62,31 @@ namespace Works.Services.CommandHandlers
 
             await _workDbContext.SaveChangesAsync(cancellationToken);
             await _eventBus.Publish(new WorkerCreated(command.Id, userId, emplyer.Id, command.Data));
+        }
+
+        public async Task Handle(AddWorkerForEmployer command, CancellationToken cancellationToken)
+        {
+            Guid? userId = null;
+            //if (!string.IsNullOrEmpty(command.UserId))
+            //{
+            //    var user = await _users.FindAsync(command.UserId);
+            //    userId = user?.Id;
+            //}
+
+            var emplyer = await _emplyers.FindAsync(command.EmployerId);
+            var id = Guid.NewGuid();
+            await _workers.AddAsync(new Worker(
+                id,
+                userId,
+                emplyer.Id,
+                command.FirstName,
+                command.LastName,
+                command.Address,
+                null
+            ));
+
+            await _workDbContext.SaveChangesAsync(cancellationToken);
+            await _eventBus.Publish(new WorkerCreated(id, userId, emplyer.Id, new Shared.ValueObjects.WorkerInfo { FirstName = command.FirstName, LastName=command.LastName,Address =command.Address }));
         }
     }
 }

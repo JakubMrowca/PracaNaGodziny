@@ -6,3 +6,4 @@ C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGod
 C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Common.Shared\obj\Debug\netcoreapp2.0\Common.Shared.AssemblyInfo.cs
 C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Common.Shared\obj\Debug\netcoreapp2.0\Common.Shared.dll
 C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Common.Shared\obj\Debug\netcoreapp2.0\Common.Shared.pdb
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Common.Shared\obj\Debug\netcoreapp2.0\Common.Shared.csprojResolveAssemblyReference.cache

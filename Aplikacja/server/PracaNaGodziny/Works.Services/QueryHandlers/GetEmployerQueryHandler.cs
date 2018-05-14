@@ -45,6 +45,7 @@ namespace Works.Services.QueryHandlers
             {
                 Address = employer.Address,
                 FirstName = employer.FirstName,
+                Photo = employer.Photo,
                 LastName = employer.LastName,
                 AccountNumber = employer.AccountNumber,
                 Clients = MapClientsToVm(clientsForEmployer),

@@ -16,6 +16,7 @@ namespace Works.Models.Domain
         public string AccountNumber { get; set; }
         public int WorkerCount { get; set; }
         public int LocationCount { get; set; }
+        public byte[] Photo { get; set; }
 
         public Employer()
         {

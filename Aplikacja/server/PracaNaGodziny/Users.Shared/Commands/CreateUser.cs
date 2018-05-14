@@ -8,13 +8,18 @@ namespace Users.Shared.Commands
 {
     public class CreateUser : ICommand
     {
-        public Guid Id { get; }
-        public UserInfo Data { get; }
-
-        public CreateUser(Guid id, UserInfo data)
+        public Guid Id { get; set; }
+        //public UserInfo Data { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Address { get; set; }
+        public bool IsEmployer { get; set; }
+        public bool IsWorker { get; set; }
+        public CreateUser()
         {
-            Id = id;
-            Data = data;
+            Id = Guid.NewGuid();
         }
     }
 

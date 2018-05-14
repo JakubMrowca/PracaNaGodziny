@@ -43,6 +43,8 @@ namespace DataBase.Migrations
 
                     b.Property<string>("Phone");
 
+                    b.Property<byte[]>("Photo");
+
                     b.HasKey("Id");
 
                     b.HasIndex("EmployerId");
@@ -66,6 +68,8 @@ namespace DataBase.Migrations
                     b.Property<DateTime>("ModDateTime");
 
                     b.Property<string>("Name");
+
+                    b.Property<byte[]>("Photo");
 
                     b.HasKey("Id");
 
@@ -117,6 +121,8 @@ namespace DataBase.Migrations
 
                     b.Property<DateTime>("ModDateTime");
 
+                    b.Property<byte[]>("Photo");
+
                     b.Property<Guid>("UserId");
 
                     b.Property<int>("WorkerCount");
@@ -146,6 +152,8 @@ namespace DataBase.Migrations
                     b.Property<string>("LastName");
 
                     b.Property<DateTime>("ModDateTime");
+
+                    b.Property<byte[]>("Photo");
 
                     b.Property<Guid?>("UserId");
 

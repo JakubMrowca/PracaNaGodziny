@@ -15,6 +15,7 @@ namespace Clients.Models.Domain
         public string Address { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public byte[] Photo { get; set; }
         public IEnumerable<Location> Locations => _locations;
         protected readonly ICollection<Location> _locations;
 

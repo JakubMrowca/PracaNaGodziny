@@ -18,3 +18,5 @@ C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGod
 C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Services\obj\Debug\netcoreapp2.0\Works.Services.csproj.CopyComplete
 C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Services\obj\Debug\netcoreapp2.0\Works.Services.dll
 C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Services\obj\Debug\netcoreapp2.0\Works.Services.pdb
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Services\bin\Debug\netcoreapp2.0\Clients.Shared.dll
+C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Works.Services\bin\Debug\netcoreapp2.0\Clients.Shared.pdb

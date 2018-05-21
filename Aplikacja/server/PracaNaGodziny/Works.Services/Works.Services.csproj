@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\PracaNaGodziny\Aplikacja\webApi\PracaNaGodziny\Infrastructure.Domain\Infrastructure.Domain.csproj" />
+    <ProjectReference Include="..\Clients.Shared\Clients.Shared.csproj" />
     <ProjectReference Include="..\Users.Models\Users.Models.csproj" />
     <ProjectReference Include="..\Works.Models\Works.Models.csproj" />
   </ItemGroup>

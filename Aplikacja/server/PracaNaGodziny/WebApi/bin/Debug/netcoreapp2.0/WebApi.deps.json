@@ -4177,6 +4177,7 @@
       },
       "Works.Services/1.0.0": {
         "dependencies": {
+          "Clients.Shared": "1.0.0",
           "Infrastructure.Domain": "1.0.0",
           "Users.Models": "1.0.0",
           "Works.Models": "1.0.0"

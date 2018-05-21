@@ -7,6 +7,10 @@ import { AddWorkerForEmployerCommand } from './commands/AddWorkerForEmployerComm
 import { ApplicationState } from '../state/ApplicationState';
 import { WebApiEmployers } from './services/WebApiEmployers';
 import { WorkerVm } from './vm/WorkerVm';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { Router } from '@angular/router';
+import { RoutingEnum } from '../state/RoutingEnum';
+import { LocationVm } from '../client/vm/LocationVm';
 
 @Component({
   selector: 'app-employer',
@@ -16,7 +20,9 @@ import { WorkerVm } from './vm/WorkerVm';
 export class EmployerComponent implements OnInit {
   addWorkerDialog: MatDialogRef<AddWorkerDialog>;
   workers: Array<WorkerVm>;
-  constructor(public eventService: EventService, public dialog: MatDialog, public appState: ApplicationState, public employerApi: WebApiEmployers) {
+  locations: Array<LocationVm>;
+  loadedData: boolean;
+  constructor(private router:Router,public eventService: EventService, public dialog: MatDialog, public appState: ApplicationState, public employerApi: WebApiEmployers) {
     
   }
 
@@ -24,6 +30,7 @@ export class EmployerComponent implements OnInit {
     var event = new UserAuthorized();
     this.eventService.sendEvent<UserAuthorized>(event);
     this.loadWorkers();
+    this.loadLocations();
   }
 
   add() {
@@ -45,10 +52,29 @@ export class EmployerComponent implements OnInit {
       });
   }
 
-  loadWorkers() {
-    this.employerApi.getWorkers(this.appState.LoggedUser.employerId)
-      .subscribe((data: Array<WorkerVm>) => {
-        this.workers = { ...data }
+  loadLocations(){
+    this.loadedData = true;
+    this.employerApi.getLocations(this.appState.LoggedUser.employerId)
+      .subscribe((data: Array<LocationVm>) => {
+        this.locations = data;
+        this.appState.Locations = data;
+        this.loadedData = false;
       });
   }
+
+  loadWorkers() {
+    this.loadedData = true;
+    this.employerApi.getWorkers(this.appState.LoggedUser.employerId)
+      .subscribe((data: Array<WorkerVm>) => {
+        this.workers = data
+        this.loadedData = false;
+      });
+  }
+
+  goToWorker(worker:WorkerVm){
+    this.appState.SelectedWorker = worker;
+    this.router.navigate([RoutingEnum.worker])
+  }
+
+
 }

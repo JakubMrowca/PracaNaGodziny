@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { UserVm } from '../login/vm/userVm';
+import { WorkerVm } from '../employer/vm/WorkerVm';
+import { LocationVm } from '../client/vm/LocationVm';
 
 @Injectable()
 export class ApplicationState {
     public LoggedUser: UserVm;
     IsAuthorize: boolean;
+    public SelectedWorker:WorkerVm;
+    public Locations:Array<LocationVm>;
 
     IsEmployer(): boolean {
         if (this.LoggedUser.employerId != null && this.LoggedUser.employerId != "")

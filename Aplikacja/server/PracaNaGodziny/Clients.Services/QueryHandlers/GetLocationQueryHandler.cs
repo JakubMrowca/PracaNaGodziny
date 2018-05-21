@@ -31,6 +31,9 @@ namespace Clients.Services.QueryHandlers
 
         public async Task<LocationVm> Handle(GetLocation message, CancellationToken cancellationToken = default(CancellationToken))
         {
+            try
+            {
+
             var location = await _locations
                 .Where(x => x.Arch == false && x.Id == message.Id)
                 .FirstOrDefaultAsync(cancellationToken);
@@ -46,10 +49,10 @@ namespace Clients.Services.QueryHandlers
             {
                 Id = location.Id,
                 Address = location.Address,
-                ClientId = client.Id,
+                ClientId = client?.Id,
                 Name = location.Name,
-                ClientName = $"{client.FirstName} {client.LastName}",
-                Client = new ClientVm
+                ClientName = $"{client?.FirstName} {client?.LastName}",
+                Client = client == null ? null : new ClientVm
                 {
                     Address = client.Address,
                     Id = client.Id,
@@ -68,6 +71,11 @@ namespace Clients.Services.QueryHandlers
                 TotalHourInThisWeek = worksForLocation.Sum(x => x.TotalHourInThisWeek),
                 TotalHourInLastMonth = worksForLocation.Sum(x => x.TotalHourInLastMonth),
             };
+            }catch(Exception ex)
+            {
+                return null;
+            }
+
         }
     }
 }

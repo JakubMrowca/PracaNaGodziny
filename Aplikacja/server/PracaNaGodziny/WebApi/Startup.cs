@@ -158,6 +158,7 @@ namespace WebApi
             services.AddScoped<IRequestHandler<AddHours>, HoursHandler>();
             services.AddScoped<IRequestHandler<SubstractHours>, HoursHandler>();
             services.AddScoped<IRequestHandler<GetWork, WorkSummaryVm>, GetWorkQueryHandler>();
+            services.AddScoped<IRequestHandler<GetWorkByLocationAndWorker, WorkSummaryVm>, GetWorkQueryHandler>();
 
 
             //Users
@@ -199,6 +200,10 @@ namespace WebApi
             services.AddScoped<IRequestHandler<GetWorksForWorker, List<WorkSummaryVm>>, GetWorksForWorkerQueryHandler>();
             services.AddScoped<IRequestHandler<GetForUser, Works.Shared.ValueObjects.UserVm>, GetForUserQueryHandler>();
             services.AddScoped<IRequestHandler<AddPhotoForEmployer>, AddPhotoHandler>();
+            services.AddScoped<IRequestHandler<AddWorkCommand>, AddWorkHandler>();
+            services.AddScoped<IRequestHandler<GetWorksForLocation, List<WorkSummaryVm>>, GetWorksForLocationQueryHandler>();
+            services.AddScoped<IRequestHandler<GetLocationsForEmployer, List<Works.Shared.ValueObjects.LocationVm>>, GetLocationsForEmployerQueryHandler>();
+
 
         }
     }

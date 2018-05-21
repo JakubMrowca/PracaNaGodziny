@@ -2194,6 +2194,19 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Clients.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Infrastructure.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Clients.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Clients.Shared.dll": {}
+        }
+      },
       "Infrastructure.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
@@ -6875,6 +6888,11 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "Clients.Shared/1.0.0": {
+      "type": "project",
+      "path": "../Clients.Shared/Clients.Shared.csproj",
+      "msbuildProject": "../Clients.Shared/Clients.Shared.csproj"
+    },
     "Infrastructure.Domain/1.0.0": {
       "type": "project",
       "path": "../../../../../PracaNaGodziny/Aplikacja/webApi/PracaNaGodziny/Infrastructure.Domain/Infrastructure.Domain.csproj",
@@ -6903,6 +6921,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "Clients.Shared >= 1.0.0",
       "Infrastructure.Domain >= 1.0.0",
       "Microsoft.NETCore.App >= 2.0.0",
       "Users.Models >= 1.0.0",
@@ -6941,6 +6960,9 @@
           "projectReferences": {
             "C:\\Users\\jakubm.ASTOR\\Desktop\\PracaNaGodziny\\PracaNaGodziny\\Aplikacja\\webApi\\PracaNaGodziny\\Infrastructure.Domain\\Infrastructure.Domain.csproj": {
               "projectPath": "C:\\Users\\jakubm.ASTOR\\Desktop\\PracaNaGodziny\\PracaNaGodziny\\Aplikacja\\webApi\\PracaNaGodziny\\Infrastructure.Domain\\Infrastructure.Domain.csproj"
+            },
+            "C:\\Users\\jakubm.ASTOR\\Desktop\\PracaNaGodziny\\Projekt\\Aplikacja\\server\\PracaNaGodziny\\Clients.Shared\\Clients.Shared.csproj": {
+              "projectPath": "C:\\Users\\jakubm.ASTOR\\Desktop\\PracaNaGodziny\\Projekt\\Aplikacja\\server\\PracaNaGodziny\\Clients.Shared\\Clients.Shared.csproj"
             },
             "C:\\Users\\jakubm.ASTOR\\Desktop\\PracaNaGodziny\\Projekt\\Aplikacja\\server\\PracaNaGodziny\\Users.Models\\Users.Models.csproj": {
               "projectPath": "C:\\Users\\jakubm.ASTOR\\Desktop\\PracaNaGodziny\\Projekt\\Aplikacja\\server\\PracaNaGodziny\\Users.Models\\Users.Models.csproj"

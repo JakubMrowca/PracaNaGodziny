@@ -10,13 +10,15 @@ namespace Clients.Shared.Commands
     {
         public Guid Id { get; }
         public Guid? ClientId { get; }
+        public Guid? EmployerId { get; }
         public LocationInfo Data { get; }
 
-        public CreateLocation(Guid id, LocationInfo data, Guid? clientId = null)
+        public CreateLocation(Guid id, LocationInfo data, Guid? clientId = null, Guid? employerId = null)
         {
             Id = id;
             ClientId = clientId;
             Data = data;
+            EmployerId = employerId;
         }
     }
 }

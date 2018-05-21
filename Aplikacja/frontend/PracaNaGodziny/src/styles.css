@@ -13,3 +13,8 @@ body{
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
 }
+.spinner-center{
+   position: relative;
+   left: 34%;
+   bottom: -150px!important;
+}

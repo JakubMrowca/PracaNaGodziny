@@ -65,6 +65,8 @@ namespace DataBase.Migrations
 
                     b.Property<DateTime>("CreateDateTime");
 
+                    b.Property<Guid?>("EmployerId");
+
                     b.Property<DateTime>("ModDateTime");
 
                     b.Property<string>("Name");

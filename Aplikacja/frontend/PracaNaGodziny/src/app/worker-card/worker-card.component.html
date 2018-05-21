@@ -1,13 +1,11 @@
 <mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>{{worker.firstName}}</mat-card-title>
-    <mat-card-subtitle>{{worker.lastName}}</mat-card-subtitle>
-  </mat-card-header>
   <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
   <mat-card-content>
+   {{worker.firstName}} {{worker.lastName}}
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-rised-button>{{worker.wage}}</button>
-    <button mat-rised-button>300zł</button>
-  </mat-card-actions>
 </mat-card>
+<div class="czips">
+<mat-chip-list *ngIf="worker.wage > 0">
+    <mat-chip color="warn">{{worker.wage}}zł</mat-chip>
+  </mat-chip-list>
+</div>

@@ -8,6 +8,7 @@ export class WorkerVm{
         totalHour:number
         unpaidHour:number
         wage:number
+        photo:any
 
         totalHourInThisMonth:number
         totalHourInThisWeek:number

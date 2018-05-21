@@ -32,6 +32,13 @@ namespace WebApi.Controllers
             await _commandBus.Send(command);
         }
 
+        [HttpPost]
+        [Route("work")]
+        public async Task AddWork([FromBody] AddWorkCommand command)
+        {
+            await _commandBus.Send(command);
+        }
+
         [HttpGet]
         [Route("{id}")]
         public async Task<List<WorkerVm>> GetWorkersForEmployer(string id)
@@ -41,6 +48,17 @@ namespace WebApi.Controllers
                 EmployerId = id
             };
             return await _queryBus.Send<GetWorkersForEmployer, List<WorkerVm>>(query);
+        }
+
+        [HttpGet]
+        [Route("locations/{id}")]
+        public async Task<List<LocationVm>> GetLocationsForEmployer(string id)
+        {
+            var query = new GetLocationsForEmployer
+            {
+                EmployerId = Guid.Parse(id)
+            };
+            return await _queryBus.Send<GetLocationsForEmployer, List<LocationVm>>(query);
         }
     }
 }

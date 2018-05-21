@@ -63,6 +63,7 @@ import{EventService} from './state/EventService';
 import { AddWorkerDialog } from './employer/dialog/AddWorkerDialog';
 import { WebApiEmployers } from './employer/services/WebApiEmployers';
 import { WorkerCardComponent } from './worker-card/worker-card.component';
+import { AddWorkDialog } from './employer/dialog/AddWorkDialog';
 
 const path: Routes = [
   { path: '', redirectTo: RoutingEnum.login, pathMatch: 'full' },
@@ -84,6 +85,7 @@ const path: Routes = [
     EmployerComponent,
     SelectProfilTypeDialog,
     AddWorkerDialog,
+    AddWorkDialog,
     WorkerCardComponent
   ],
   imports: [
@@ -99,6 +101,7 @@ const path: Routes = [
     MatChipsModule,
     MatDatepickerModule,
     MatDialogModule,
+    MatAutocompleteModule,
     MatDividerModule,
     MatExpansionModule,
     MatGridListModule,
@@ -126,7 +129,7 @@ const path: Routes = [
     BrowserAnimationsModule,
     FormsModule
   ],
-  entryComponents: [SelectProfilTypeDialog,AddWorkerDialog],
+  entryComponents: [SelectProfilTypeDialog,AddWorkerDialog,AddWorkDialog],
   providers: [WebApiUsers,ApplicationState, IsAuthorize, PhotoHelpers,EventService,WebApiEmployers],
   bootstrap: [AppComponent]
 })

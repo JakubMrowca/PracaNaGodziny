@@ -1,3 +1,28 @@
 .example-card{
-    widows: 100px!important;height: 120px!important;
+    width: 110px!important;
+    height: 120px!important;
+    padding-left: 4px!important;
+    padding-right: 4px!important;
+    padding-bottom: 10px!important;
 }
+.example-card img{
+    width: 118px!important;
+    margin-left: -4px!important;
+    margin-bottom: 8px!important;
+}
+.mat-card-header-text{
+    margin: 0 0 !important;
+}
+body {
+    background: #fafafa;
+    padding: 40px 0 0;
+  }
+  
+  /* use section to lay out flex items */
+.czips{
+    position: relative;
+    bottom: 17px;
+    right: -67px;
+    z-index: 999;
+}
+.mat-chip{background-color: #ea7e41!important}

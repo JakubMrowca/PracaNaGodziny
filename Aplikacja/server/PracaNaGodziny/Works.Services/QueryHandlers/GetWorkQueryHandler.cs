@@ -13,7 +13,7 @@ using Works.Shared.ValueObjects;
 
 namespace Works.Services.QueryHandlers
 {
-    public class GetWorkQueryHandler : IQueryHandler<GetWork, WorkSummaryVm>
+    public class GetWorkQueryHandler : IQueryHandler<GetWork, WorkSummaryVm>, IQueryHandler<GetWorkByLocationAndWorker, WorkSummaryVm> 
     {
         private readonly IDocumentSession _session;
 
@@ -54,6 +54,35 @@ namespace Works.Services.QueryHandlers
 
             });
 
+        }
+
+        public Task<WorkSummaryVm> Handle(GetWorkByLocationAndWorker message, CancellationToken cancellationToken)
+        {
+ 
+            var workVm = _session.Query<WorkSummaryView>()
+           .Where(x => x.LocationId == message.LocationId && x.WorkerId == message.WorkerId)
+           .FirstOrDefault();
+
+            if (workVm == null)
+                return null;
+
+            return Task.FromResult(new WorkSummaryVm
+            {
+                WorkId = workVm.WorkId,
+                Wage = workVm.Wage,
+                LocationId = workVm.LocationId,
+                WorkerId = workVm.WorkerId,
+                AdditionalHour = workVm.AdditionalHour,
+                PaidHour = workVm.PaidHour,
+                UnpaidHour = workVm.TotalHour,
+                AdditionalWage = workVm.AdditionalWage,
+                Rate = workVm.Rate,
+                TotalHourInThisMonth = workVm.WorkStat.TotalHourInThisMonth,
+                TotalHourInThisWeek = workVm.WorkStat.TotalHourInThisWeek,
+                TotalHourInLastMonth = workVm.WorkStat.TotalHourInLastMonth,
+                PaidHourInThisWeek = workVm.WorkStat.PaidHourInThisWeek,
+                PaidHourInThisMonth = workVm.WorkStat.PaidHourInThisMonth
+            });
         }
     }
 }

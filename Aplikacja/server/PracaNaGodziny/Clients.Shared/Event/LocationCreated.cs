@@ -10,14 +10,16 @@ namespace Clients.Shared.Events
     {
         public Guid Id { get; private set; }
         public Guid? ClientId { get; private set; }
+        public Guid? EmployerId { get; private set; }
 
         public LocationInfo Data { get; private set; }
 
-        public LocationCreated(Guid id, Guid? clientId, LocationInfo data)
+        public LocationCreated(Guid id, Guid? clientId, Guid? employerId, LocationInfo data)
         {
             Id = id;
             ClientId = clientId;
             Data = data;
+            EmployerId = employerId;
         }
     }
 }

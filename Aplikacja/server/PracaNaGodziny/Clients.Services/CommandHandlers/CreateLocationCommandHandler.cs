@@ -36,7 +36,7 @@ namespace Clients.Services.CommandHandlers
 
         public async Task Handle(CreateLocation command, CancellationToken cancellationToken = default(CancellationToken))
         {
-            Guid clientId;
+            Guid? clientId=null;
             if (command.ClientId.HasValue)
             {
                 var client = await _clients.FindAsync(command.ClientId);
@@ -48,11 +48,12 @@ namespace Clients.Services.CommandHandlers
                 command.Id,             
                 command.Data.Name, 
                 command.Data.Address,
-                clientId
+                clientId,
+                command.EmployerId
             ));
 
             await _clientsDbContext.SaveChangesAsync(cancellationToken);
-            await _eventBus.Publish(new LocationCreated(command.Id, clientId, command.Data));
+            await _eventBus.Publish(new LocationCreated(command.Id, clientId,command.EmployerId, command.Data));
 
         }
     }

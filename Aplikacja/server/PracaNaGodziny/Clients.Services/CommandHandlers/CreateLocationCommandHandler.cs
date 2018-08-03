@@ -9,6 +9,7 @@ using Clients.Shared.Commands;
 using Clients.Shared.Events;
 using Infrastructure.Domain.Commands;
 using Infrastructure.Domain.Events;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Clients.Services.CommandHandlers
@@ -34,7 +35,7 @@ namespace Clients.Services.CommandHandlers
             _clients = _clientsDbContext.Clients;
         }
 
-        public async Task Handle(CreateLocation command, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Unit> Handle(CreateLocation command, CancellationToken cancellationToken = default(CancellationToken))
         {
             Guid? clientId=null;
             if (command.ClientId.HasValue)
@@ -54,6 +55,7 @@ namespace Clients.Services.CommandHandlers
 
             await _clientsDbContext.SaveChangesAsync(cancellationToken);
             await _eventBus.Publish(new LocationCreated(command.Id, clientId,command.EmployerId, command.Data));
+            return Unit.Value;
 
         }
     }

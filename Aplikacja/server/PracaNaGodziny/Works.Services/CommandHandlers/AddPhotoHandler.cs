@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
 using Works.Models.Domain;
 using Works.Models.Storage;
 using Works.Services.Services;
@@ -31,7 +32,7 @@ namespace Works.Services.CommandHandlers
             _photoService = photoServices;
         }
 
-        public async Task Handle(AddPhotoForEmployer command, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(AddPhotoForEmployer command, CancellationToken cancellationToken)
         {
             var employer = await _emplyers
                 .Where(x => x.Arch == false)
@@ -41,6 +42,7 @@ namespace Works.Services.CommandHandlers
             var photo = _photoService.ConvertToByteArray(command.Photo);
             employer.Photo = photo;
             _workDbContext.SaveChanges();
+            return Unit.Value;
         }
     }
 }

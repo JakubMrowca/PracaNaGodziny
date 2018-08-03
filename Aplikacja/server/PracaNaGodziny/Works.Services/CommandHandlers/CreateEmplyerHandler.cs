@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Infrastructure.Domain.Commands;
 using Infrastructure.Domain.Events;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Users.Models.Domain;
 using Users.Models.Storage;
@@ -36,7 +37,7 @@ namespace Works.Services.CommandHandlers
             _users = userDbContext.Users;
         }
 
-        public async Task Handle(CreateEmployer command, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Unit> Handle(CreateEmployer command, CancellationToken cancellationToken = default(CancellationToken))
         {
             var user = await _users.FindAsync(command.UserId);
 
@@ -51,7 +52,7 @@ namespace Works.Services.CommandHandlers
 
             await _workDbContext.SaveChangesAsync(cancellationToken);
             await _eventBus.Publish(new EmplyerCreated(command.Id, user.Id, command.Data));
-
+            return Unit.Value;
         }
     }
 }

@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { CreateUserCommand } from './command/CreateUserCommand';
+import { CreateUserCommand } from './CreateUserCommand';
 import { NgForm } from '@angular/forms';
-import { MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { WebApiUsers } from './services/WebApiUsers';
 import { AuthorizeUserCommand } from './command/AuthorizeUserCommand';
 import { ApplicationState } from '../state/ApplicationState';
 import { Router } from '@angular/router';
 import { SelectProfilTypeDialog } from './dialog/SelectProfilTypeDialog';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import {RoutingEnum} from '../state/RoutingEnum';
+import { RoutingEnum } from '../state/RoutingEnum';
 import { EventService } from '../state/EventService';
 import { UserAuthorized } from './events/UserAuthorized';
 
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   reapetPassword: string;
   profilTypeDialog: MatDialogRef<SelectProfilTypeDialog>;
 
-  constructor(private router:Router, public dialog: MatDialog,public snackBar: MatSnackBar, public webApiUsers: WebApiUsers, public appState: ApplicationState,private eventService: EventService) {
+  constructor(private router: Router, public dialog: MatDialog, public snackBar: MatSnackBar, public webApiUsers: WebApiUsers, public appState: ApplicationState, private eventService: EventService) {
     this.createUserCommand = new CreateUserCommand();
     this.authorizeUserCommand = new AuthorizeUserCommand();
   }
@@ -59,25 +59,25 @@ export class LoginComponent implements OnInit {
           this.profilTypeDialog = this.dialog.open(SelectProfilTypeDialog, {
             hasBackdrop: false
           });
-      
+
           this.profilTypeDialog
             .afterClosed()
             .subscribe(result => {
-              if(result.isEmployer)
+              if (result.isEmployer)
                 this.navigate(RoutingEnum.employer);
               else
                 this.navigate(RoutingEnum.worker);
             });
         }
         else if (this.appState.IsEmployer() && !this.appState.IsWorker())
-          this.navigate(RoutingEnum.employer);    
-        else        
+          this.navigate(RoutingEnum.employer);
+        else
           this.navigate(RoutingEnum.worker)
-        
+
       });
   }
 
-  navigate(to:RoutingEnum){
+  navigate(to: RoutingEnum) {
     this.router.navigate([to.toString()])
   }
 

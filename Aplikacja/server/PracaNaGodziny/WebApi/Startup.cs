@@ -143,8 +143,8 @@ namespace WebApi
         private static void ConfigureMediator(IServiceCollection services)
         {
             services.AddScoped<IMediator, Mediator>();
-            services.AddTransient<SingleInstanceFactory>(sp => t => sp.GetService(t));
-            services.AddTransient<MultiInstanceFactory>(sp => t => sp.GetServices(t));
+            services.AddTransient<ServiceFactory>(p => p.GetService);
+
         }
         private static void ConfigureCQRS(IServiceCollection services)
         {

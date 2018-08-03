@@ -8,15 +8,8 @@ namespace Works.Shared.Commands
 {
     public class CreateEmployer:ICommand
     {
-        public Guid Id { get;  }
-        public Guid UserId { get; }
-        public EmplyerInfo Data { get; }
-
-        public CreateEmployer(Guid id, Guid userId, EmplyerInfo data)
-        {
-            Id = id;
-            UserId = userId;
-            Data = data;
-        }
+        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
+        public EmplyerInfo Data { get; set; }
     }
 }

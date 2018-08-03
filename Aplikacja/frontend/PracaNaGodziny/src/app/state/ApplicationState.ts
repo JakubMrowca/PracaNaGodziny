@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserVm } from '../login/vm/userVm';
-import { WorkerVm } from '../employer/vm/WorkerVm';
+import { WorkerVm } from '../worker/vm/WorkerVm';
 import { LocationVm } from '../client/vm/LocationVm';
 
 @Injectable()

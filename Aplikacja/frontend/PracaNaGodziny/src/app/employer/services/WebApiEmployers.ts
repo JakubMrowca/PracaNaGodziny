@@ -5,7 +5,7 @@ import { AddWorkerForEmployerCommand } from '../commands/AddWorkerForEmployerCom
 import { Observable } from 'rxjs/Observable';
 import { EmployerVm } from '../vm/EmployerVm';
 import { AddPhotoForEmployerCommand } from '../../employer/commands/AddPhotoForEmployerCommand';
-import { WorkerVm } from '../vm/WorkerVm';
+import { WorkerVm } from '../../worker/vm/WorkerVm';
 import { LocationVm } from '../../client/vm/LocationVm';
 import { AddWorkForWorkerCommand } from '../commands/AddWorkForWorkerCommand';
 

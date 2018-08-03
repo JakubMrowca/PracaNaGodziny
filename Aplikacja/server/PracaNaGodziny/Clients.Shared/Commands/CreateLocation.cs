@@ -8,17 +8,10 @@ namespace Clients.Shared.Commands
 {
     public class CreateLocation : ICommand
     {
-        public Guid Id { get; }
-        public Guid? ClientId { get; }
-        public Guid? EmployerId { get; }
-        public LocationInfo Data { get; }
-
-        public CreateLocation(Guid id, LocationInfo data, Guid? clientId = null, Guid? employerId = null)
-        {
-            Id = id;
-            ClientId = clientId;
-            Data = data;
-            EmployerId = employerId;
-        }
+        public Guid Id { get; set; }
+        public Guid? ClientId { get; set; }
+        public Guid? EmployerId { get; set; }
+        public LocationInfo Data { get; set; }
+        
     }
 }

@@ -41,7 +41,7 @@ namespace WebApi.Controllers
         {
            await _commandBus.Send(command);
            var loggedUser = _loggedUserService.GetLoggedUser();
-            return loggedUser;
+           return loggedUser;
         }
 
         [HttpPost]

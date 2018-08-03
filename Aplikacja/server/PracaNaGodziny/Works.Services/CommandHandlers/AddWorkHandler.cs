@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
 using Works.Models.Domain;
 using Works.Models.Storage;
 using Works.Models.View;
@@ -36,14 +37,19 @@ namespace Works.Services.CommandHandlers
             _workDbContext = context;
         }
 
-        public async Task Handle(AddWorkCommand command, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(AddWorkCommand command, CancellationToken cancellationToken)
         {
-            var location = await _queryBus.Send<GetLocation, Clients.Shared.ValueObjects.LocationVm>(new GetLocation(command.LocationId));
+            var location = await _queryBus.Send<GetLocation, Clients.Shared.ValueObjects.LocationVm>(new GetLocation(command.LocationId.HasValue ? command.LocationId.Value : Guid.Empty));
 
             if (location == null)
             {
                 var locationId = Guid.NewGuid();
-                var createLocationCommand = new CreateLocation(locationId, new LocationInfo { Name = command.LocationName },employerId: command.EmployerId);
+                var createLocationCommand = new CreateLocation
+                {
+                    EmployerId = command.EmployerId,
+                    Data = new LocationInfo { Name = command.LocationName },
+                    Id = locationId
+                };
                 await _commandBus.Send(createLocationCommand);
                 location = await _queryBus.Send<GetLocation, Clients.Shared.ValueObjects.LocationVm>(new GetLocation(locationId));
             }
@@ -74,6 +80,7 @@ namespace Works.Services.CommandHandlers
             };
 
             await _commandBus.Send(addHourCommand);
+            return Unit.Value;
 
         }
     }

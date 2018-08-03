@@ -43,7 +43,7 @@ namespace Works.Models.View
 
         public void Apply(NewInflowRecorded @event)
         {
-            if (!@event.Inflow.AdditionalRate.HasValue)
+            if (!@event.Inflow.AdditionalRate.HasValue || @event.Inflow.AdditionalRate.Value <=0)
             {
                 var wage = Convert.ToDecimal(@event.Inflow.Hours * Rate);
                 Wage += wage;

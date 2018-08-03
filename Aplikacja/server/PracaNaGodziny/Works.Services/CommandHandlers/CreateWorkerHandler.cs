@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Infrastructure.Domain.Commands;
 using Infrastructure.Domain.Events;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Users.Models.Domain;
 using Users.Models.Storage;
@@ -39,7 +40,7 @@ namespace Works.Services.CommandHandlers
             _users = userDbContext.Users;
         }
 
-        public async Task Handle(CreateWorker command, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Unit> Handle(CreateWorker command, CancellationToken cancellationToken = default(CancellationToken))
         {
             Guid? userId = null;
             if (command.UserId.HasValue)
@@ -62,9 +63,10 @@ namespace Works.Services.CommandHandlers
 
             await _workDbContext.SaveChangesAsync(cancellationToken);
             await _eventBus.Publish(new WorkerCreated(command.Id, userId, emplyer.Id, command.Data));
+            return Unit.Value;
         }
 
-        public async Task Handle(AddWorkerForEmployer command, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(AddWorkerForEmployer command, CancellationToken cancellationToken)
         {
             Guid? userId = null;
             //if (!string.IsNullOrEmpty(command.UserId))
@@ -87,6 +89,7 @@ namespace Works.Services.CommandHandlers
 
             await _workDbContext.SaveChangesAsync(cancellationToken);
             await _eventBus.Publish(new WorkerCreated(id, userId, emplyer.Id, new Shared.ValueObjects.WorkerInfo { FirstName = command.FirstName, LastName=command.LastName,Address =command.Address }));
+            return Unit.Value;
         }
     }
 }

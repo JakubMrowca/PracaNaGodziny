@@ -6,7 +6,7 @@ import { AddWorkerDialog } from './dialog/AddWorkerDialog';
 import { AddWorkerForEmployerCommand } from './commands/AddWorkerForEmployerCommand';
 import { ApplicationState } from '../state/ApplicationState';
 import { WebApiEmployers } from './services/WebApiEmployers';
-import { WorkerVm } from './vm/WorkerVm';
+import { WorkerVm } from '../worker/vm/WorkerVm';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
 import { RoutingEnum } from '../state/RoutingEnum';

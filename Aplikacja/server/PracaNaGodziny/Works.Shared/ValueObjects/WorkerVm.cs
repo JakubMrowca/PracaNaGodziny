@@ -14,7 +14,7 @@ namespace Works.Shared.ValueObjects
         public List<WorkSummaryVm> Works { get; set; }
         public double PaidHour { get; set; }
         public double TotalHour { get; set; }
-        public double UnpaidHour => PaidHour - TotalHour;
+        public double UnpaidHour => TotalHour - PaidHour;
         public decimal Wage { get; set; }
 
         public double TotalHourInThisMonth { get; set; }

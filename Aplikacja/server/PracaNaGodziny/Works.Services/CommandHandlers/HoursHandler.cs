@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
 using Works.Models.Domain;
 using Works.Shared.Commands;
 
@@ -21,7 +22,7 @@ namespace Works.Services.CommandHandlers
             _session = session;
         }
 
-        public async Task Handle(AddHours command, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Unit> Handle(AddHours command, CancellationToken cancellationToken = default(CancellationToken))
         {
             var workFor = await _store.AggregateStreamAsync<Work>(command.WorkId, token: cancellationToken);
 
@@ -29,9 +30,10 @@ namespace Works.Services.CommandHandlers
             _store.Append(workFor.Id, workFor.PendingEvents.ToArray());
 
             await _session.SaveChangesAsync(cancellationToken);
+            return Unit.Value;
         }
 
-        public async Task Handle(SubstractHours command, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Unit> Handle(SubstractHours command, CancellationToken cancellationToken = default(CancellationToken))
         {
             var workFor = await _store.AggregateStreamAsync<Work>(command.WorkId, token: cancellationToken);
 
@@ -39,6 +41,7 @@ namespace Works.Services.CommandHandlers
             _store.Append(workFor.Id, workFor.PendingEvents.ToArray());
 
             await _session.SaveChangesAsync(cancellationToken);
+            return Unit.Value;
         }
     }
 }

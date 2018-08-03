@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { CreateUserCommand } from '../command/createUserCommand';
+import { CreateUserCommand } from '../createUserCommand';
 import { Observable } from 'rxjs/Observable';
 import { AuthorizeUserCommand } from '../command/AuthorizeUserCommand';
 import { UserVm } from '../vm/userVm';

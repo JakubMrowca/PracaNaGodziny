@@ -15,6 +15,7 @@ using Users.Shared.Events;
 using Users.Shared.ValueObjects;
 using Works.Shared.Commands;
 using Infrastructure.Domain.Queries;
+using MediatR;
 using Works.Shared.Queries;
 using Users.Services.Services;
 
@@ -44,7 +45,7 @@ namespace Users.Services.CommandHandlers
             this.commandBus = commandBus;
         }
 
-        public async Task Handle(CreateUser command, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Unit> Handle(CreateUser command, CancellationToken cancellationToken = default(CancellationToken))
         {
             await Users.AddAsync(new User(
                 command.Id,
@@ -57,16 +58,28 @@ namespace Users.Services.CommandHandlers
 
             if (command.IsEmployer)
             {
-                var createEmplyerCommand = new CreateEmployer(Guid.NewGuid(), command.Id, new Works.Shared.ValueObjects.EmplyerInfo { FirstName = command.FirstName, LastName = command.LastName, Address = command.Address });
+                var createEmplyerCommand = new CreateEmployer
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = command.Id,
+                    Data = new Works.Shared.ValueObjects.EmplyerInfo
+                    {
+                        FirstName = command.FirstName,
+                        LastName = command.LastName,
+                        Address = command.Address
+                    }
+                };
                 await commandBus.Send(createEmplyerCommand);
             }
             if (command.IsWorker)
             {
                 //var createWorkerCommand = new CreateWorker()
+                //TODO tworzenie pracownika
             }
+            return Unit.Value;
         }
 
-        public async Task Handle(UpdateUsers command, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Unit> Handle(UpdateUsers command, CancellationToken cancellationToken = default(CancellationToken))
         {
             var users = await Users.FindAsync(command.Id);
 
@@ -75,10 +88,11 @@ namespace Users.Services.CommandHandlers
 
             await dbContext.SaveChangesAsync(cancellationToken);
             await eventBus.Publish(new UserUpdated(command.Id, command.Data));
+            return Unit.Value;
 
         }
 
-        public async Task Handle(DeleteUser command, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Unit> Handle(DeleteUser command, CancellationToken cancellationToken = default(CancellationToken))
         {
             var users = await Users.FindAsync(command.Id);
 
@@ -87,9 +101,10 @@ namespace Users.Services.CommandHandlers
 
             await dbContext.SaveChangesAsync(cancellationToken);
             await eventBus.Publish(new UserDeleted(command.Id));
+            return Unit.Value;
         }
 
-        public async Task Handle(AuthorizeUser command, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(AuthorizeUser command, CancellationToken cancellationToken)
         {
             var user = await Users
                 .Where(x => x.Arch == false)
@@ -101,6 +116,7 @@ namespace Users.Services.CommandHandlers
 
             var userVm = await queryBus.Send<GetForUser, Works.Shared.ValueObjects.UserVm>(new GetForUser { UserId = user.Id });
             loggedUserService.SetLoggedUser(userVm);
+            return Unit.Value;
 
         }
     }

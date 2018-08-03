@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { WorkerVm } from '../employer/vm/WorkerVm';
+import { WorkerVm } from '../worker/vm/WorkerVm';
 
 @Component({
   selector: 'app-worker-card',

@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RoutingEnum } from '../state/RoutingEnum';
 import { ApplicationState } from '../state/ApplicationState';
-import { WorkerVm } from '../employer/vm/WorkerVm';
+import { WorkerVm } from './vm/WorkerVm';
 import { MatTableDataSource, MatSort, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AddWorkDialog } from '../employer/dialog/AddWorkDialog';
 import { AddWorkForWorkerCommand } from '../employer/commands/AddWorkForWorkerCommand';
 import { WebApiEmployers } from '../employer/services/WebApiEmployers';
+import { WebApiWorkers } from './services/WebApiWorkers';
 
 @Component({
   selector: 'app-worker',
@@ -15,9 +16,10 @@ import { WebApiEmployers } from '../employer/services/WebApiEmployers';
 })
 export class WorkerComponent implements OnInit {
 
+  loadedData:boolean;
   worker:WorkerVm;
   addWorkDialog: MatDialogRef<AddWorkDialog>;
-  constructor(private employerApi:WebApiEmployers, private router:Router,public dialog: MatDialog,private appState:ApplicationState) {
+  constructor(private employerApi:WebApiEmployers, private workerApi:WebApiWorkers, private router:Router,public dialog: MatDialog,private appState:ApplicationState) {
     this.worker = appState.SelectedWorker;
    }
 
@@ -38,6 +40,7 @@ export class WorkerComponent implements OnInit {
           var command = new AddWorkForWorkerCommand(result);
           command.employerId = this.appState.LoggedUser.employerId;
           command.workerId = this.worker.id;
+          this.loadedData = true;
           this.employerApi.addWork(command).subscribe(data => {
             this.loadWorker();
           });
@@ -46,7 +49,12 @@ export class WorkerComponent implements OnInit {
   }
 
   loadWorker(){
-
+    this.loadedData = true;
+    this.workerApi.getWorker(this.worker.id)
+      .subscribe((data: WorkerVm) => {
+        this.worker = data;
+        this.loadedData = false;
+      });
   }
 
   back(){

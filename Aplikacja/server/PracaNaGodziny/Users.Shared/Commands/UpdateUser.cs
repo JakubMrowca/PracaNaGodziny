@@ -10,11 +10,5 @@ namespace Users.Shared.Commands
     {
         public Guid Id { get; set; }
         public UserInfo Data { get; set; }
-
-        public UpdateUsers(Guid id, UserInfo data)
-        {
-            Id = id;
-            Data = data;
-        }
     }
 }

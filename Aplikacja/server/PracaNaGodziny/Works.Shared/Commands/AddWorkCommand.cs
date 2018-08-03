@@ -7,7 +7,7 @@ namespace Works.Shared.Commands
 {
     public class AddWorkCommand:ICommand
     {
-        public Guid LocationId { get; set; }
+        public Guid? LocationId { get; set; }
         public Guid WorkerId { get; set; }
         public string LocationName { get; set; }
         public int Rate { get; set; }

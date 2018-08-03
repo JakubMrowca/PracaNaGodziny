@@ -9,6 +9,7 @@ using Clients.Shared.Commands;
 using Clients.Shared.Events;
 using Infrastructure.Domain.Commands;
 using Infrastructure.Domain.Events;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Works.Models.Domain;
 using Works.Models.Storage;
@@ -37,7 +38,7 @@ namespace Clients.Services.CommandHandlers
             _clients = _clientsDbContext.Clients;
         }
 
-        public async Task Handle(CreateClient command, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Unit> Handle(CreateClient command, CancellationToken cancellationToken = default(CancellationToken))
         {
             var employer = await _emplyers.FindAsync(command.EmployerId);
 
@@ -53,6 +54,7 @@ namespace Clients.Services.CommandHandlers
 
             await _clientsDbContext.SaveChangesAsync(cancellationToken);
             await _eventBus.Publish(new ClientCreated(command.Id, employer.Id, command.Data));
+            return Unit.Value;
 
         }
     }

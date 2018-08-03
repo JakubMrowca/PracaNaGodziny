@@ -64,6 +64,7 @@ import { AddWorkerDialog } from './employer/dialog/AddWorkerDialog';
 import { WebApiEmployers } from './employer/services/WebApiEmployers';
 import { WorkerCardComponent } from './worker-card/worker-card.component';
 import { AddWorkDialog } from './employer/dialog/AddWorkDialog';
+import { WebApiWorkers } from './worker/services/WebApiWorkers';
 
 const path: Routes = [
   { path: '', redirectTo: RoutingEnum.login, pathMatch: 'full' },
@@ -130,7 +131,7 @@ const path: Routes = [
     FormsModule
   ],
   entryComponents: [SelectProfilTypeDialog,AddWorkerDialog,AddWorkDialog],
-  providers: [WebApiUsers,ApplicationState, IsAuthorize, PhotoHelpers,EventService,WebApiEmployers],
+  providers: [WebApiUsers,ApplicationState, IsAuthorize, PhotoHelpers,EventService,WebApiEmployers,WebApiWorkers],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,16 +8,9 @@ namespace Clients.Shared.Commands
 {
     public class CreateClient: ICommand
     {
-        public Guid Id { get; }
-        public Guid EmployerId { get; }
+        public Guid Id { get; set; }
+        public Guid EmployerId { get; set; }
    
-        public ClientInfo Data { get; }
-
-        public CreateClient(Guid id, Guid employerId, ClientInfo data)
-        {
-            Id = id;
-            EmployerId = employerId;
-            Data = data;
-        }
+        public ClientInfo Data { get; set; }
     }
 }

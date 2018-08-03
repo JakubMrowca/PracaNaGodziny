@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CreateUserCommand } from './CreateUserCommand';
+import { CreateUserCommand } from './command/CreateUserCommand';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { WebApiUsers } from './services/WebApiUsers';

@@ -14,7 +14,7 @@ namespace WebApi.Controllers
 {
     [EnableCors("MyPolicy")]
     [Route("api/[controller]")]
-    public class WorkController:Controller
+    public class WorkController : Controller
     {
         private readonly ICommandBus _commandBus;
         private readonly IQueryBus _queryBus;

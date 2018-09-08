@@ -106,39 +106,52 @@ namespace WebApi
 
         private void ConfigureMarten(IServiceCollection services)
         {
-            services.AddScoped(sp =>
+            var documentStore1 = DocumentStore.For(options =>
             {
-                var documentStore = DocumentStore.For(options =>
-                {
-                    var config = Configuration.GetSection("EventStore");
-                    var connectionString = config.GetValue<string>("ConnectionString");
-                    var schemaName = config.GetValue<string>("Schema");
 
-                    options.Connection(connectionString);
-                    options.AutoCreateSchemaObjects = AutoCreate.All;
-                    options.Events.DatabaseSchemaName = schemaName;
-                    options.DatabaseSchemaName = schemaName;
-
-                    options.Events.InlineProjections.AggregateStreamsWith<Work>();
-                    options.Events.InlineProjections.Add(new WorkSummaryViewProjection());
-                    options.Events.InlineProjections.Add(new UsersViewProjection());
-
-                    options.Events.AddEventType(typeof(NewWorkCreated));
-                    options.Events.AddEventType(typeof(NewInflowRecorded));
-                    options.Events.AddEventType(typeof(NewOutflowRecorded));
-                    options.Events.AddEventType(typeof(WorkerCreated));
-                    options.Events.AddEventType(typeof(EmplyerCreated));
-
-                    options.Events.AddEventType(typeof(UserCreated));
-                    options.Events.AddEventType(typeof(UserUpdated));
-                    options.Events.AddEventType(typeof(UserDeleted));
-
-                    options.Events.AddEventType(typeof(LocationCreated));
-                    options.Events.AddEventType(typeof(ClientCreated));
-                });
-
-                return documentStore.OpenSession();
+                options.Connection(
+                    "PORT = 5432; HOST = 127.0.0.1; TIMEOUT = 15; POOLING = True; MINPOOLSIZE = 1; MAXPOOLSIZE = 100; COMMANDTIMEOUT = 20; DATABASE = 'workhour'; PASSWORD = 'mrowca144'; USER ID = 'postgres'");
+                options.Events.DatabaseSchemaName = "wh";
+                options.DatabaseSchemaName = "wh";
+                options.AutoCreateSchemaObjects = AutoCreate.All;
             });
+
+            var service = documentStore1.OpenSession();
+
+            services.AddScoped(sp =>
+           {
+               var documentStore = DocumentStore.For(options =>
+               {
+                   var config = Configuration.GetSection("EventStore");
+                   var connectionString = config.GetValue<string>("ConnectionString");
+                   var schemaName = config.GetValue<string>("Schema");
+
+                   options.Connection(connectionString);
+                   options.AutoCreateSchemaObjects = AutoCreate.All;
+                   options.Events.DatabaseSchemaName = schemaName;
+                   options.DatabaseSchemaName = schemaName;
+
+
+                   options.Events.InlineProjections.AggregateStreamsWith<Work>();
+                   options.Events.InlineProjections.Add(new WorkSummaryViewProjection());
+                   options.Events.InlineProjections.Add(new UsersViewProjection());
+
+                   options.Events.AddEventType(typeof(NewWorkCreated));
+                   options.Events.AddEventType(typeof(NewInflowRecorded));
+                   options.Events.AddEventType(typeof(NewOutflowRecorded));
+                   options.Events.AddEventType(typeof(WorkerCreated));
+                   options.Events.AddEventType(typeof(EmplyerCreated));
+
+                   options.Events.AddEventType(typeof(UserCreated));
+                   options.Events.AddEventType(typeof(UserUpdated));
+                   options.Events.AddEventType(typeof(UserDeleted));
+
+                   options.Events.AddEventType(typeof(LocationCreated));
+                   options.Events.AddEventType(typeof(ClientCreated));
+               });
+
+               return documentStore.OpenSession();
+           });
         }
         private static void ConfigureMediator(IServiceCollection services)
         {
@@ -154,18 +167,18 @@ namespace WebApi
             services.AddSingleton<ILoggedUserService, LoggedUserService>();
             services.AddScoped<IPhotoServices, PhotoServices>();
 
-            services.AddScoped<IRequestHandler<CreateNewWork>, CreateWorkHandler>();
-            services.AddScoped<IRequestHandler<AddHours>, HoursHandler>();
-            services.AddScoped<IRequestHandler<SubstractHours>, HoursHandler>();
+            services.AddScoped<IRequestHandler<CreateNewWork, Unit>, CreateWorkHandler>();
+            services.AddScoped<IRequestHandler<AddHours, Unit>, HoursHandler>();
+            services.AddScoped<IRequestHandler<SubstractHours, Unit>, HoursHandler>();
             services.AddScoped<IRequestHandler<GetWork, WorkSummaryVm>, GetWorkQueryHandler>();
             services.AddScoped<IRequestHandler<GetWorkByLocationAndWorker, WorkSummaryVm>, GetWorkQueryHandler>();
 
 
             //Users
-            services.AddScoped<IRequestHandler<CreateUser>, UsersCommandHandler>();
-            services.AddScoped<IRequestHandler<UpdateUsers>, UsersCommandHandler>();
-            services.AddScoped<IRequestHandler<DeleteUser>, UsersCommandHandler>();
-            services.AddScoped<IRequestHandler<AuthorizeUser>, UsersCommandHandler>();
+            services.AddScoped<IRequestHandler<CreateUser, Unit>, UsersCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateUsers, Unit>, UsersCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteUser, Unit>, UsersCommandHandler>();
+            services.AddScoped<IRequestHandler<AuthorizeUser, Unit>, UsersCommandHandler>();
 
             services.AddScoped<INotificationHandler<UserCreated>, UsersEventHandler>();
             services.AddScoped<INotificationHandler<UserUpdated>, UsersEventHandler>();
@@ -176,8 +189,8 @@ namespace WebApi
 
 
             //Clients
-            services.AddScoped<IRequestHandler<CreateLocation>, CreateLocationCommandHandler>();
-            services.AddScoped<IRequestHandler<CreateClient>, CreateClientCommandHandler>();
+            services.AddScoped<IRequestHandler<CreateLocation, Unit>, CreateLocationCommandHandler>();
+            services.AddScoped<IRequestHandler<CreateClient, Unit>, CreateClientCommandHandler>();
 
             services.AddScoped<INotificationHandler<ClientCreated>, ClientCreatedEventHandler>();
             services.AddScoped<INotificationHandler<LocationCreated>, LocationCreatedEventHandler>();
@@ -187,9 +200,9 @@ namespace WebApi
             
             
             //Work
-            services.AddScoped<IRequestHandler<CreateWorker>, CreateWorkerHandler>();
-            services.AddScoped<IRequestHandler<CreateEmployer>, CreateEmplyerHandler>();
-            services.AddScoped<IRequestHandler<AddWorkerForEmployer>, CreateWorkerHandler>();
+            services.AddScoped<IRequestHandler<CreateWorker, Unit>, CreateWorkerHandler>();
+            services.AddScoped<IRequestHandler<CreateEmployer, Unit>, CreateEmplyerHandler>();
+            services.AddScoped<IRequestHandler<AddWorkerForEmployer, Unit>, CreateWorkerHandler>();
 
             services.AddScoped<INotificationHandler<WorkerCreated>, WorkerCreatedEventHandler>();
             services.AddScoped<INotificationHandler<EmplyerCreated>, EmployerCreatedEventHandler>();
@@ -199,8 +212,8 @@ namespace WebApi
             services.AddScoped<IRequestHandler<GetEmplyer, EmployerVm>, GetEmployerQueryHandler>();
             services.AddScoped<IRequestHandler<GetWorksForWorker, List<WorkSummaryVm>>, GetWorksForWorkerQueryHandler>();
             services.AddScoped<IRequestHandler<GetForUser, Works.Shared.ValueObjects.UserVm>, GetForUserQueryHandler>();
-            services.AddScoped<IRequestHandler<AddPhotoForEmployer>, AddPhotoHandler>();
-            services.AddScoped<IRequestHandler<AddWorkCommand>, AddWorkHandler>();
+            services.AddScoped<IRequestHandler<AddPhotoForEmployer, Unit>, AddPhotoHandler>();
+            services.AddScoped<IRequestHandler<AddWorkCommand, Unit>, AddWorkHandler>();
             services.AddScoped<IRequestHandler<GetWorksForLocation, List<WorkSummaryVm>>, GetWorksForLocationQueryHandler>();
             services.AddScoped<IRequestHandler<GetLocationsForEmployer, List<Works.Shared.ValueObjects.LocationVm>>, GetLocationsForEmployerQueryHandler>();
 

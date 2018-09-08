@@ -36,12 +36,19 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
+        [Route("{id}")]
+        public async Task DeleteUser(string id)
+        {
+            await _commandBus.Send(new DeleteUser(Guid.Parse(id)));
+        }
+
+        [HttpPost]
         [Route("authorize")]
         public async Task<UserVm> AuthorizeUser([FromBody] AuthorizeUser command)
         {
-           await _commandBus.Send(command);
-           var loggedUser = _loggedUserService.GetLoggedUser();
-           return loggedUser;
+            await _commandBus.Send(command);
+            var loggedUser = _loggedUserService.GetLoggedUser();
+            return loggedUser;
         }
 
         [HttpPost]

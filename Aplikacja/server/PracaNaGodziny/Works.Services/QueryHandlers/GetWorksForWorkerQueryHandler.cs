@@ -19,7 +19,7 @@ namespace Works.Services.QueryHandlers
     public class GetWorksForWorkerQueryHandler : IQueryHandler<GetWorksForWorker, List<WorkSummaryVm>>
     {
         private readonly IDocumentSession _session;
-        private IEventStore _store => _session.Events;
+        //private IEventStore _store => _session.Events;
         private readonly IQueryBus _queryBus;
 
         public GetWorksForWorkerQueryHandler(IDocumentSession session, IQueryBus queryBus)

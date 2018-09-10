@@ -2,6 +2,20 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/Aplikacja/server/PracaNaGodziny/.vs
-/Aplikacja/server/PracaNaGodziny/Clients.Tests/obj/Debug/netcoreapp2.0/Clients.Tests.csprojResolveAssemblyReference.cache
-/Aplikacja/server/PracaNaGodziny/Notifications.Services/obj/Debug/netcoreapp2.0/Notifications.Services.csprojResolveAssemblyReference.cache
+/build/
+*.suo
+*.user
+_ReSharper.*/
+*.sdf
+bin/
+obj/
+Debug/
+Release/
+*.opensdf
+*.tlog
+*.log
+TestResult.xml
+*.VisualState.xml
+Version.cs
+Version.h
+Version.cpp

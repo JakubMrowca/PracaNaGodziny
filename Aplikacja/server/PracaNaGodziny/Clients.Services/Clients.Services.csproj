@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\PracaNaGodziny\Aplikacja\webApi\PracaNaGodziny\Infrastructure.Domain\Infrastructure.Domain.csproj" />
+    <ProjectReference Include="..\Clients.Models\Clients.Models.csproj" />
+    <ProjectReference Include="..\Clients.Shared\Clients.Shared.csproj" />
+    <ProjectReference Include="..\Works.Models\Works.Models.csproj" />
+  </ItemGroup>
+
+</Project>

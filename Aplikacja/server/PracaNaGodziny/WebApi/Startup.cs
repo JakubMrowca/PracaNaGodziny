@@ -106,19 +106,7 @@ namespace WebApi
 
         private void ConfigureMarten(IServiceCollection services)
         {
-            var documentStore1 = DocumentStore.For(options =>
-            {
-
-                options.Connection(
-                    "PORT = 5432; HOST = 127.0.0.1; TIMEOUT = 15; POOLING = True; MINPOOLSIZE = 1; MAXPOOLSIZE = 100; COMMANDTIMEOUT = 20; DATABASE = 'workhour'; PASSWORD = 'mrowca144'; USER ID = 'postgres'");
-                options.Events.DatabaseSchemaName = "wh";
-                options.DatabaseSchemaName = "wh";
-                options.AutoCreateSchemaObjects = AutoCreate.All;
-            });
-
-            var service = documentStore1.OpenSession();
-
-            services.AddScoped(sp =>
+                services.AddScoped(sp =>
            {
                var documentStore = DocumentStore.For(options =>
                {
@@ -173,7 +161,6 @@ namespace WebApi
             services.AddScoped<IRequestHandler<GetWork, WorkSummaryVm>, GetWorkQueryHandler>();
             services.AddScoped<IRequestHandler<GetWorkByLocationAndWorker, WorkSummaryVm>, GetWorkQueryHandler>();
 
-
             //Users
             services.AddScoped<IRequestHandler<CreateUser, Unit>, UsersCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateUsers, Unit>, UsersCommandHandler>();
@@ -216,7 +203,6 @@ namespace WebApi
             services.AddScoped<IRequestHandler<AddWorkCommand, Unit>, AddWorkHandler>();
             services.AddScoped<IRequestHandler<GetWorksForLocation, List<WorkSummaryVm>>, GetWorksForLocationQueryHandler>();
             services.AddScoped<IRequestHandler<GetLocationsForEmployer, List<Works.Shared.ValueObjects.LocationVm>>, GetLocationsForEmployerQueryHandler>();
-
 
         }
     }

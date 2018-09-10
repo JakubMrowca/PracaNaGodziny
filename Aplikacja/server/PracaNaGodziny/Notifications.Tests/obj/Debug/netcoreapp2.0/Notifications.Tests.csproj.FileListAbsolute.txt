@@ -1,9 +1,0 @@
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Tests\bin\Debug\netcoreapp2.0\Notifications.Tests.deps.json
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Tests\bin\Debug\netcoreapp2.0\Notifications.Tests.dll
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Tests\bin\Debug\netcoreapp2.0\Notifications.Tests.pdb
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Tests\obj\Debug\netcoreapp2.0\Notifications.Tests.csproj.CoreCompileInputs.cache
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Tests\obj\Debug\netcoreapp2.0\Notifications.Tests.AssemblyInfoInputs.cache
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Tests\obj\Debug\netcoreapp2.0\Notifications.Tests.AssemblyInfo.cs
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Tests\obj\Debug\netcoreapp2.0\Notifications.Tests.dll
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Tests\obj\Debug\netcoreapp2.0\Notifications.Tests.pdb
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Tests\obj\Debug\netcoreapp2.0\Notifications.Tests.csprojResolveAssemblyReference.cache

@@ -1,9 +1,0 @@
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Shared\bin\Debug\netcoreapp2.0\Notifications.Shared.deps.json
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Shared\bin\Debug\netcoreapp2.0\Notifications.Shared.dll
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Shared\bin\Debug\netcoreapp2.0\Notifications.Shared.pdb
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Shared\obj\Debug\netcoreapp2.0\Notifications.Shared.csprojResolveAssemblyReference.cache
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Shared\obj\Debug\netcoreapp2.0\Notifications.Shared.csproj.CoreCompileInputs.cache
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Shared\obj\Debug\netcoreapp2.0\Notifications.Shared.AssemblyInfoInputs.cache
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Shared\obj\Debug\netcoreapp2.0\Notifications.Shared.AssemblyInfo.cs
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Shared\obj\Debug\netcoreapp2.0\Notifications.Shared.dll
-C:\Users\jakubm.ASTOR\Desktop\PracaNaGodziny\Projekt\Aplikacja\server\PracaNaGodziny\Notifications.Shared\obj\Debug\netcoreapp2.0\Notifications.Shared.pdb

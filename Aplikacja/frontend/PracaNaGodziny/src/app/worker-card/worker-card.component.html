@@ -5,7 +5,10 @@
   </mat-card-content>
 </mat-card>
 <div class="czips">
-<mat-chip-list *ngIf="worker.wage > 0">
+<mat-chip-list *ngIf="isInLocation == false &&worker.wage > 0">
     <mat-chip color="warn">{{worker.wage}}zł</mat-chip>
+  </mat-chip-list>
+  <mat-chip-list *ngIf="isInLocation == true">
+    <mat-chip color="primary">{{worker.totalHour}} h</mat-chip>
   </mat-chip-list>
 </div>

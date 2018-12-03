@@ -43,6 +43,20 @@ namespace Works.Services.QueryHandlers
             var worksForWorker = await
                 _queryBus.Send<GetWorksForWorker, List<WorkSummaryVm>>(new GetWorksForWorker(worker.Id,message.From,message.To));
 
+            var locationVm = worksForWorker.GroupBy(x => x.LocationId).Select(x => new LocationVm
+            {
+                Id = x.Key,
+                TotalHour = x.Sum(y => y.UnpaidHour + y.PaidHour),
+                TotalWage = x.Sum(y => (y.TotalWage))
+            }).ToList();
+
+            foreach (var location in locationVm)
+            {
+                var locEntity = await _locations.Where(x => x.Id == location.Id).FirstOrDefaultAsync(cancellationToken);
+                location.Name = locEntity.Name;
+                location.Address = locEntity.Address;
+            }
+
             return new WorkerVm
             {
                 Address = worker.Address,
@@ -59,7 +73,7 @@ namespace Works.Services.QueryHandlers
                 PaidHourInThisWeek = worksForWorker.Sum(x => x.PaidHourInThisWeek),
                 TotalHourInThisWeek = worksForWorker.Sum(x => x.TotalHourInThisWeek),
                 TotalHourInLastMonth = worksForWorker.Sum(x => x.TotalHourInLastMonth),
-                
+                Locations = locationVm         
             };
 
         }

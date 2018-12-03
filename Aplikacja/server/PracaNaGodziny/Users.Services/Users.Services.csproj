@@ -5,12 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Marten" Version="3.0.0-alpha-2" />
+    <PackageReference Include="Marten" Version="3.0.1" />
     <PackageReference Include="Microsoft.AspNet.SignalR" Version="2.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\PracaNaGodziny\Aplikacja\webApi\PracaNaGodziny\Infrastructure.Domain\Infrastructure.Domain.csproj" />
+    <ProjectReference Include="..\Notifications.Shared\Notifications.Shared.csproj" />
     <ProjectReference Include="..\Users.Models\Users.Models.csproj" />
     <ProjectReference Include="..\Users.Shared\Users.Shared.csproj" />
     <ProjectReference Include="..\Works.Shared\Works.Shared.csproj" />

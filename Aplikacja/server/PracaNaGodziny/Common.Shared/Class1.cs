@@ -2,7 +2,8 @@
 
 namespace Common.Shared
 {
-    public class Class1
+    public enum FrontendEventEnum
     {
+
     }
 }

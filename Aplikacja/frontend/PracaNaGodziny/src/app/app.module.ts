@@ -65,11 +65,16 @@ import { WebApiEmployers } from './employer/services/WebApiEmployers';
 import { WorkerCardComponent } from './worker-card/worker-card.component';
 import { AddWorkDialog } from './employer/dialog/AddWorkDialog';
 import { WebApiWorkers } from './worker/services/WebApiWorkers';
+import { LocationCardComponent } from './location-card/location-card.component';
+import { SignalREventEmiter } from './state/SignalREventEmiter';
+import { LocationComponent } from './location/location.component';
+import { LocationWebApi } from './location/services/LocationWebApi';
 
 const path: Routes = [
   { path: '', redirectTo: RoutingEnum.login, pathMatch: 'full' },
   { path: RoutingEnum.login, component: LoginComponent },
   { path: RoutingEnum.employer, component: EmployerComponent,canActivate:[IsAuthorize]},
+  { path: RoutingEnum.location, component: LocationComponent,canActivate:[IsAuthorize]},
   { path: RoutingEnum.worker, component: WorkerComponent,canActivate:[IsAuthorize]}
   
   // { path: 'history/:id', component: HistoryComponent},
@@ -87,7 +92,9 @@ const path: Routes = [
     SelectProfilTypeDialog,
     AddWorkerDialog,
     AddWorkDialog,
-    WorkerCardComponent
+    WorkerCardComponent,
+    LocationCardComponent,
+    LocationComponent
   ],
   imports: [
     RouterModule.forRoot(path),
@@ -131,7 +138,7 @@ const path: Routes = [
     FormsModule
   ],
   entryComponents: [SelectProfilTypeDialog,AddWorkerDialog,AddWorkDialog],
-  providers: [WebApiUsers,ApplicationState, IsAuthorize, PhotoHelpers,EventService,WebApiEmployers,WebApiWorkers],
+  providers: [WebApiUsers,ApplicationState, IsAuthorize, PhotoHelpers,EventService,SignalREventEmiter,WebApiEmployers,WebApiWorkers,LocationWebApi],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

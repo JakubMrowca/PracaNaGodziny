@@ -16,11 +16,12 @@ import { WebApiWorkers } from './services/WebApiWorkers';
 })
 export class WorkerComponent implements OnInit {
 
-  loadedData:boolean;
+  loadedData = true;
   worker:WorkerVm;
   addWorkDialog: MatDialogRef<AddWorkDialog>;
   constructor(private employerApi:WebApiEmployers, private workerApi:WebApiWorkers, private router:Router,public dialog: MatDialog,private appState:ApplicationState) {
     this.worker = appState.SelectedWorker;
+    this.loadWorker();
    }
 
   ngOnInit() {
@@ -54,6 +55,7 @@ export class WorkerComponent implements OnInit {
       .subscribe((data: WorkerVm) => {
         this.worker = data;
         this.loadedData = false;
+        console.log(data);
       });
   }
 

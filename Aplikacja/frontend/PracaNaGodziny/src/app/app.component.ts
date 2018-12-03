@@ -3,13 +3,15 @@ import { ApplicationState } from './state/ApplicationState';
 import { UserVm } from './login/vm/userVm';
 import { Router } from '@angular/router';
 import { RoutingEnum } from './state/RoutingEnum';
-import {ElementRef,Renderer2} from '@angular/core';
+import { ElementRef, Renderer2 } from '@angular/core';
 import { PhotoHelpers } from './helpers/PhotoHelpers';
 import { WebApiUsers } from './login/services/WebApiUsers';
 import { AddPhotoForEmployerCommand } from './employer/commands/AddPhotoForEmployerCommand';
 import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs/Subscription';
 import { EventService } from './state/EventService';
+import { UserAuthorized } from './login/events/UserAuthorized';
+import { EmployerRedirected } from './employer/events/EmployerRedirected';
 
 @Component({
   selector: 'app-root',
@@ -18,42 +20,46 @@ import { EventService } from './state/EventService';
 })
 export class AppComponent {
   title = 'app';
-  employerName:string;
-  subscription:Subscription;
-  el:ElementRef;
-  command:AddPhotoForEmployerCommand;
-  constructor(private appState:ApplicationState, private router:Router, private photoHelper:PhotoHelpers,private userApi:WebApiUsers,private eventService:EventService){
+  employerName: string;
+  subscription: Subscription;
+  el: ElementRef;
+  command: AddPhotoForEmployerCommand;
+  constructor(private appState: ApplicationState, private router: Router, private photoHelper: PhotoHelpers, private userApi: WebApiUsers, private eventService: EventService) {
     this.command = new AddPhotoForEmployerCommand();
-    this.subscription = this.eventService.getMessage().subscribe(message => {
-      this.changePhoto()
+    this.subscription = this.eventService.getMessage<UserAuthorized>("UserAuthorized").subscribe(message => {
+      this.appState.SetLoggedUser(message);
     });
+    this.eventService.getMessage<EmployerRedirected>("EmployerRedirected").subscribe(message => {
+      this.changePhoto()
+
+    })
   }
 
-  checkUser():boolean{
-    if(this.appState.IsAuthorize){
+  checkUser(): boolean {
+    if (this.appState.IsAuthorize) {
       this.employerName = this.appState.GetEmployerName();
       return true;
     }
     return false;
   }
 
-  logout(){
+  logout() {
     this.appState.Logout()
     this.router.navigate([RoutingEnum.login]);
   }
 
-  changePhoto(){
+  changePhoto() {
     var photo = document.getElementById("Photo");
     photo.style.backgroundImage = this.photoHelper.GetPhoto(this.appState.LoggedUser.photo);
     this.photoHelper.AddPhoto();
   }
 
-  addPhoto(){
+  addPhoto() {
     this.command.employerId = this.appState.LoggedUser.employerId;
     this.command.photo = this.photoHelper.AddPhoto();
     this.userApi.addPhotoForEmployer(this.command).subscribe(data => {
     }
-     );
+    );
   }
 
 }

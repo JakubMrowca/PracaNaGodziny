@@ -82,5 +82,20 @@ namespace Works.Models.Domain
             PaidHour += @event.OutFlow.Hours;
             TotalHour -= @event.OutFlow.Hours;
         }
+
+
+        public void RateChange(DateTime timeStamp, double value)
+        {
+            var @event = new RateChanged()
+                { RateId = Id, TimeStamp = timeStamp, Value = value };
+            Apply(@event);
+            Append(@event);
+
+        }
+
+        public void Apply(RateChanged @event)
+        {
+            Rate = @event.Value;
+        }
     }
 }

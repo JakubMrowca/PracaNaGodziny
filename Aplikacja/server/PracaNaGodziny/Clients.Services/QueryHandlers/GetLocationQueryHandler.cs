@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Clients.Models.Domain;
+using Clients.Models.Domain.Ref;
 using Clients.Models.Storage;
 using Clients.Shared.Queries;
 using Works.Shared.Queries;
@@ -20,11 +21,14 @@ namespace Clients.Services.QueryHandlers
     {
         private readonly IQueryable<Location> _locations;
         private readonly IQueryable<Client> _clients;
+        private readonly IQueryable<WorkerRef> _workers;
+
         private readonly IQueryBus _queryBus;
 
         public GetLocationQueryHandler(ClientsDbContext clientsDbContext, IQueryBus queryBus)
         {
             _clients = clientsDbContext.Clients;
+            _workers = clientsDbContext.Workers;
             _queryBus = queryBus;
             _locations = clientsDbContext.Locations;
         }
@@ -38,6 +42,10 @@ namespace Clients.Services.QueryHandlers
                 .Where(x => x.Arch == false && x.Id == message.Id)
                 .FirstOrDefaultAsync(cancellationToken);
 
+                if (location == null)
+                {
+                    throw new Exception();
+                }
             var client = await _clients
                 .Where(x => x.Arch == false && x.Id == location.ClientId)
                 .FirstOrDefaultAsync(cancellationToken);
@@ -45,7 +53,20 @@ namespace Clients.Services.QueryHandlers
             var worksForLocation = await _queryBus.Send<GetWorksForLocation, List<WorkSummaryVm>>
                 (new GetWorksForLocation(location.Id, message.From, message.To));
 
-            return new LocationVm
+                var workersVm = worksForLocation.GroupBy(x => x.WorkerId).Select(x => new WorkerVm
+                {
+                    Id = x.Key,
+                    Wage = x.Sum(y => (y.Wage))
+                }).ToList();
+
+                foreach (var worker in workersVm)
+                {
+                    var workerEntity = await _workers.Where(x => x.Id == worker.Id).FirstOrDefaultAsync(cancellationToken);
+                    worker.FirstName = workerEntity.FirstName;
+                    worker.LastName = workerEntity.LastName;
+                }
+
+                return new LocationVm
             {
                 Id = location.Id,
                 Address = location.Address,
@@ -65,11 +86,13 @@ namespace Clients.Services.QueryHandlers
                 PaidHour = worksForLocation.Sum(x => x.PaidHour),
                 TotalHour = worksForLocation.Sum(x => x.UnpaidHour),
                 Wage = worksForLocation.Sum(x => x.Wage),
+                TotalWage = worksForLocation.Sum(x=> x.TotalWage),
                 TotalHourInThisMonth = worksForLocation.Sum(x => x.TotalHourInThisMonth),
                 PaidHourInThisMonth = worksForLocation.Sum(x => x.PaidHourInThisMonth),
                 PaidHourInThisWeek = worksForLocation.Sum(x => x.PaidHourInThisWeek),
                 TotalHourInThisWeek = worksForLocation.Sum(x => x.TotalHourInThisWeek),
                 TotalHourInLastMonth = worksForLocation.Sum(x => x.TotalHourInLastMonth),
+                Workers = workersVm
             };
             }catch(Exception ex)
             {

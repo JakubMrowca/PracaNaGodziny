@@ -1,6 +1,7 @@
 ﻿using Clients.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Clients.Models.Domain.Ref;
 using Users.Models.Domain;
 using Works.Models.Domain;
 using Works.Models.Domain.Ref;
@@ -34,6 +35,7 @@ namespace DataBase
         {
             modelBuilder.Ignore<LocationRef>();
             modelBuilder.Ignore<ClientRef>();
+            modelBuilder.Ignore<WorkerRef>();
 
             base.OnModelCreating(modelBuilder);
         }

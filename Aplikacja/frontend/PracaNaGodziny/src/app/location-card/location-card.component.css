@@ -1,0 +1,20 @@
+.example-card{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%!important;
+    height: 60px!important;
+    padding-left: 4px!important;
+    padding-right: 4px!important;
+    padding-bottom: 0px!important;
+    padding-top: 10px;
+}
+.example-card img{
+    width: 80px!important;
+    height: 70px!important;
+    margin-top: -10px!important;
+    margin-left: -4px!important;
+    margin-bottom: 0px!important;
+}
+.mat-card-header-text{
+    margin: 0 0 !important;
+}

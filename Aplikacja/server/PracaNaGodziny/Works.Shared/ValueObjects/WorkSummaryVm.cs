@@ -15,6 +15,7 @@ namespace Works.Shared.ValueObjects
         public double AdditionalHour { get;  set; }
         public decimal AdditionalWage { get;  set; }
         public double Rate { get; set; }
+        public double TotalWage { get; set; }
 
         public double TotalHourInThisMonth { get; set; }
         public double TotalHourInThisWeek { get; set; }

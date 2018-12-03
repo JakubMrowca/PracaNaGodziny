@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Notifications.Services
+namespace Common.Services
 {
     public class Class1
     {

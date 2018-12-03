@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Works.Services.Services
 {
-    public interface IPhotoServices
+    public interface IConvertPhoto
     {
         byte[] ConvertToByteArray(string base64);
     }
-    public class PhotoServices : IPhotoServices
+    public class ConvertPhoto : IConvertPhoto
     {
         public byte[] ConvertToByteArray(string base64)
         {

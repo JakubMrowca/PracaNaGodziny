@@ -7,7 +7,8 @@ export class LocationVm{
     unpaidHour:number
     wage:number
     photo:any
-
+    totalWage:number
+    
     totalHourInThisMonth:number
     totalHourInThisWeek:number
     paidHourInThisMonth:number

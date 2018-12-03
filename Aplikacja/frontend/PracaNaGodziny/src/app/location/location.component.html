@@ -1,0 +1,30 @@
+<!-- <mat-toolbar class="mat-tolbarEmployer" color="primary">
+  <button (click)="back()" mat-button><i class="material-icons">arrow_back</i>Powrót</button>
+  <button (click)="addWork()" mat-button><i class="material-icons">build</i>Praca</button>
+  <button mat-button><i class="material-icons">attach_money</i>Wypłata</button>
+</mat-toolbar> -->
+<div>
+  <div *ngIf="loadedData" class="spinner-center">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="!loadedData">
+    <mat-card class="example-card">
+      <img mat-card-image src="https://v.wpimg.pl/Mzc2NzY2JBNMfWFMbQY1TlsAYR53RT0TDlVgCjUdfE1TBHxLbQF_Tk4ff0NvA3VJWgN3S3ZQKAkIWypXLks-CgxFN1QzQio=" alt="Photo of a Shiba Inu"> 
+  
+          <h3 class="location-caption">{{location.name}}</h3>
+
+      <mat-card-content style="margin-top: 15px">
+        <h3><span>Suma Należności:</span> <span style="float: right;">{{location.totalWage}}</span> </h3>
+        <h3><span>Suma godzin:</span> <span style="float: right;">{{location.totalHour}}</span> </h3>
+        <hr>
+        <h4><span>Suma godzin ost. tydzień: </span> <span style="float: right;">{{location.totalHourInThisWeek}}</span> </h4>
+        <h4><span>Suma godzin ost. miesiąc: </span> <span style="float: right;">{{location.totalHourInThisMonth}}</span> </h4>
+
+      </mat-card-content>
+    </mat-card>
+    <h3 class="worker-caption">Pracownicy</h3>
+    <div (click)="goToWorker(worker)" class="worker-card" *ngFor="let worker of location.workers">
+      <app-worker-card [worker]="worker"></app-worker-card>
+    </div>
+  </div>
+</div>

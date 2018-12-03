@@ -11,6 +11,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { RoutingEnum } from '../state/RoutingEnum';
 import { EventService } from '../state/EventService';
 import { UserAuthorized } from './events/UserAuthorized';
+import { SignalREventEmiter } from '../state/SignalREventEmiter';
+import { UserVm } from './vm/userVm';
 
 @Component({
   selector: 'app-login',
@@ -22,15 +24,43 @@ export class LoginComponent implements OnInit {
   authorizeUserCommand: AuthorizeUserCommand;
   reapetPassword: string;
   profilTypeDialog: MatDialogRef<SelectProfilTypeDialog>;
+  authorization = false;
 
-  constructor(private router: Router, public dialog: MatDialog, public snackBar: MatSnackBar, public webApiUsers: WebApiUsers, public appState: ApplicationState, private eventService: EventService) {
+  constructor(private router: Router,public signalR:SignalREventEmiter, public dialog: MatDialog, public snackBar: MatSnackBar, public webApiUsers: WebApiUsers, public appState: ApplicationState, private eventService: EventService) {
     this.createUserCommand = new CreateUserCommand();
     this.authorizeUserCommand = new AuthorizeUserCommand();
+    signalR.initUserConnection();
+    this.eventService.getMessage<UserAuthorized>("UserAuthorized").subscribe(data =>{
+      this.onAuthorize(data)
+    })
   }
 
   ngOnInit() {
+
   }
 
+  onAuthorize(data){
+    this.authorization = false;
+    if (this.appState.IsEmployer() && this.appState.IsWorker()) {
+
+      this.profilTypeDialog = this.dialog.open(SelectProfilTypeDialog, {
+        hasBackdrop: false
+      });
+
+      this.profilTypeDialog
+        .afterClosed()
+        .subscribe(result => {
+          if (result.isEmployer)
+            this.navigate(RoutingEnum.employer);
+          else
+            this.navigate(RoutingEnum.worker);
+        });
+    }
+    else if (this.appState.IsEmployer() && !this.appState.IsWorker())
+      this.navigate(RoutingEnum.employer);
+    else
+      this.navigate(RoutingEnum.worker)
+  }
   onSubmit(form: NgForm) {
     if (form.invalid == true)
       return;
@@ -51,30 +81,12 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.authorization = true;
+    this.authorizeUserCommand.connectionId = this.appState.HubConnectionId;
     this.webApiUsers.authorizeuser(this.authorizeUserCommand)
-      .subscribe(data => {
-        this.appState.SetLoggedUser(data);
-        if (this.appState.IsEmployer() && this.appState.IsWorker()) {
-
-          this.profilTypeDialog = this.dialog.open(SelectProfilTypeDialog, {
-            hasBackdrop: false
-          });
-
-          this.profilTypeDialog
-            .afterClosed()
-            .subscribe(result => {
-              if (result.isEmployer)
-                this.navigate(RoutingEnum.employer);
-              else
-                this.navigate(RoutingEnum.worker);
-            });
-        }
-        else if (this.appState.IsEmployer() && !this.appState.IsWorker())
-          this.navigate(RoutingEnum.employer);
-        else
-          this.navigate(RoutingEnum.worker)
-
-      });
+      .subscribe(data => {},error =>{
+        this.authorization = false;
+      })
   }
 
   navigate(to: RoutingEnum) {

@@ -23,6 +23,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Notifications.Services;
+using Notifications.Services.Services;
+using Notifications.Shared.Events;
+using Notifications.Shared.Hubs;
 using Users.Models.Storage;
 using Users.Models.View;
 using Users.Services.CommandHandlers;
@@ -61,6 +65,7 @@ namespace WebApi
         {
             ConfigureCors(services);
             ConfigureMvc(services);
+            services.AddSignalR();
 
             ConfigureEf(services);
             ConfigureMediator(services);
@@ -78,7 +83,11 @@ namespace WebApi
 
             app.UseCors("MyPolicy");
             app.UseMvc();
-            var z = new Work();
+            app.UseSignalR(routes =>
+            {
+                
+                routes.MapHub<UserHub>("/userHub");
+            });
         }
 
         private static void ConfigureCors(IServiceCollection services)
@@ -122,6 +131,7 @@ namespace WebApi
 
                    options.Events.InlineProjections.AggregateStreamsWith<Work>();
                    options.Events.InlineProjections.Add(new WorkSummaryViewProjection());
+
                    options.Events.InlineProjections.Add(new UsersViewProjection());
 
                    options.Events.AddEventType(typeof(NewWorkCreated));
@@ -129,6 +139,7 @@ namespace WebApi
                    options.Events.AddEventType(typeof(NewOutflowRecorded));
                    options.Events.AddEventType(typeof(WorkerCreated));
                    options.Events.AddEventType(typeof(EmplyerCreated));
+                   options.Events.AddEventType(typeof(RateChanged));
 
                    options.Events.AddEventType(typeof(UserCreated));
                    options.Events.AddEventType(typeof(UserUpdated));
@@ -152,8 +163,9 @@ namespace WebApi
             services.AddScoped<ICommandBus, CommandBus>();
             services.AddScoped<IQueryBus, QueryBus>();
             services.AddScoped<IEventBus, EventBus>();
-            services.AddSingleton<ILoggedUserService, LoggedUserService>();
-            services.AddScoped<IPhotoServices, PhotoServices>();
+            services.AddSingleton<ILoggedUsersMock, LoggedUsersMock>();
+            services.AddScoped<IConvertPhoto, ConvertPhoto>();
+            services.AddSingleton<IActiveConnections, ActiveConnections>();
 
             services.AddScoped<IRequestHandler<CreateNewWork, Unit>, CreateWorkHandler>();
             services.AddScoped<IRequestHandler<AddHours, Unit>, HoursHandler>();
@@ -174,6 +186,8 @@ namespace WebApi
             services.AddScoped<IRequestHandler<GetUser, Users.Shared.ValueObjects.UserVm>, UsersQueryHandler>();
             services.AddScoped<IRequestHandler<GetUsers, List<Users.Shared.ValueObjects.UserVm>>, UsersQueryHandler>();
 
+            //Notidications
+            services.AddScoped<INotificationHandler<UserAuthorized>, UserAuthorizeEventHandler>();
 
             //Clients
             services.AddScoped<IRequestHandler<CreateLocation, Unit>, CreateLocationCommandHandler>();
@@ -193,6 +207,8 @@ namespace WebApi
 
             services.AddScoped<INotificationHandler<WorkerCreated>, WorkerCreatedEventHandler>();
             services.AddScoped<INotificationHandler<EmplyerCreated>, EmployerCreatedEventHandler>();
+            services.AddScoped<INotificationHandler<RateChanged>, RateEventHandlers>();
+
 
             services.AddScoped<IRequestHandler<GetWorker, WorkerVm>, GetWorkerQueryHandler>();
             services.AddScoped<IRequestHandler<GetWorkersForEmployer, List<WorkerVm>>, GetWorkersForEmployerQueryHandler>();

@@ -8,7 +8,7 @@ import { WorkerVm } from '../worker/vm/WorkerVm';
 })
 export class WorkerCardComponent implements OnInit {
   @Input() worker:WorkerVm
-
+  @Input() isInLocation = false
   constructor() { }
 
   ngOnInit() {

@@ -21,6 +21,9 @@
       </mat-tab>
       <mat-tab label="Miejsc">
           <div style="margin:20px">
+            <div (click)="goToLocation(location)" class="location-card" *ngFor="let location of locations">
+              <app-location-card [location]="location"></app-location-card>
+          </div>
           </div>
         </mat-tab>
     </mat-tab-group>

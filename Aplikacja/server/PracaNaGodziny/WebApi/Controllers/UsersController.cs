@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Infrastructure.Domain.Commands;
 using Infrastructure.Domain.Queries;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Notifications.Shared.Hubs;
 using Users.Services.Services;
 using Users.Shared.Commands;
 using Works.Shared.Commands;
@@ -13,19 +15,29 @@ using Works.Shared.ValueObjects;
 
 namespace WebApi.Controllers
 {
+    public interface IUsersController
+    {
+        Task CreateUser(CreateUser command);
+        Task DeleteUser(string id);
+        Task AuthorizeUser(AuthorizeUser command);
+        Task AddPhoto(AddPhotoForEmployer command);
+    }
+
     [EnableCors("MyPolicy")]
     [Route("api/[controller]")]
-    public class UsersController : Controller
+    public class UsersController : Controller, IUsersController
     {
         private readonly ICommandBus _commandBus;
         private readonly IQueryBus _queryBus;
-        private readonly ILoggedUserService _loggedUserService;
+        private readonly ILoggedUsersMock _loggedUserService;
+        private readonly IHubContext<UserHub> _hub;
 
-        public UsersController(ICommandBus commandBus, IQueryBus queryBus, ILoggedUserService loggedUserService)
+        public UsersController(ICommandBus commandBus, IQueryBus queryBus, ILoggedUsersMock loggedUserService, IHubContext<UserHub> hub)
         {
             _loggedUserService = loggedUserService;
             _commandBus = commandBus;
             _queryBus = queryBus;
+            _hub = hub;
         }
 
         [HttpPost]
@@ -44,11 +56,9 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Route("authorize")]
-        public async Task<UserVm> AuthorizeUser([FromBody] AuthorizeUser command)
+        public async Task AuthorizeUser([FromBody] AuthorizeUser command)
         {
             await _commandBus.Send(command);
-            var loggedUser = _loggedUserService.GetLoggedUser();
-            return loggedUser;
         }
 
         [HttpPost]

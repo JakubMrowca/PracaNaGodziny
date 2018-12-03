@@ -5,7 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Marten" Version="3.0.0-alpha-2" />
+    <PackageReference Include="Marten" Version="3.0.1" />
+    <PackageReference Include="Microsoft.AspNet.SignalR" Version="2.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\PracaNaGodziny\Aplikacja\webApi\PracaNaGodziny\Infrastructure.Domain\Infrastructure.Domain.csproj" />
   </ItemGroup>
 
 </Project>

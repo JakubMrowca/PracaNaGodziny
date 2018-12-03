@@ -59,6 +59,7 @@ namespace Works.Services.QueryHandlers
                     PaidHour = worksForLocation.Sum(x => x.PaidHour),
                     TotalHour = worksForLocation.Sum(x => x.UnpaidHour),
                     Wage = worksForLocation.Sum(x => x.Wage),
+                    TotalWage = worksForLocation.Sum(x => x.TotalWage),
                     TotalHourInThisMonth = worksForLocation.Sum(x => x.TotalHourInThisMonth),
                     PaidHourInThisMonth = worksForLocation.Sum(x => x.PaidHourInThisMonth),
                     PaidHourInThisWeek = worksForLocation.Sum(x => x.PaidHourInThisWeek),

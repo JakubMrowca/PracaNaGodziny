@@ -1,3 +1,5 @@
+import { LocationVm } from "../../client/vm/LocationVm";
+
 export class WorkerVm{ 
         id:string
         firstName:string
@@ -10,6 +12,7 @@ export class WorkerVm{
         wage:number
         photo:any
 
+        Locations:LocationVm
         totalHourInThisMonth:number
         totalHourInThisWeek:number
         paidHourInThisMonth:number

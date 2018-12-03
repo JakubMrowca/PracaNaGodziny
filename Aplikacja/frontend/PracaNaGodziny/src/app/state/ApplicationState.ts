@@ -8,7 +8,9 @@ export class ApplicationState {
     public LoggedUser: UserVm;
     IsAuthorize: boolean;
     public SelectedWorker:WorkerVm;
+    public SelectedLocation:LocationVm;
     public Locations:Array<LocationVm>;
+    public HubConnectionId;
 
     IsEmployer(): boolean {
         if (this.LoggedUser.employerId != null && this.LoggedUser.employerId != "")

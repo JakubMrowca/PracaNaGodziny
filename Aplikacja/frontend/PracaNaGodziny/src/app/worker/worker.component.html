@@ -1,35 +1,37 @@
 <mat-toolbar class="mat-tolbarEmployer" color="primary">
-    <button (click)="back()" mat-button><i class="material-icons">arrow_back</i>Powrót</button>
-    <button (click)="addWork()" mat-button><i class="material-icons">build</i>Praca</button>
-    <button mat-button><i class="material-icons">attach_money</i>Wypłata</button>
-    </mat-toolbar>
-    <div>
-      <div *ngIf="loadedData" class="spinner-center">
-        <mat-spinner></mat-spinner>
-      </div>
-      <mat-card *ngIf="!loadedData" class="example-card">
-          <mat-card-header class="round-header">
-            <div mat-card-avatar class="example-header-image"></div>
-          <div class="ellipsis" style="width:70%">
-            <mat-card-title class="worker-summ-card-title ellipsis">{{worker.firstName}} {{worker.lastName}}</mat-card-title>
-            <mat-card-subtitle class="ellipsis" style="margin-right: 7px;text-align: right;font-size: 14px">{{worker.address}}</mat-card-subtitle>
-          </div>
-          </mat-card-header>
-          <mat-card-content style="margin-top: 15px">
-            <h3><span>Należnoś:</span> <span style="float: right;">{{worker.wage}} zł</span> </h3>
-            <h4><span>Bonusy:</span> <span style="float: right;">{{worker.additionalWageInThisMonth}} zł</span> </h4>
-            <hr>
-            <h4><span>Suma godzin:</span> <span style="float: right;">{{worker.totalHour}}</span> </h4>
-            <h4><span>Niewypłacone godziny: </span> <span style="float: right;">{{worker.unpaidHour}}</span> </h4>
-            <h4><span>Aktualna stawka: </span> <span style="float: right;">15zł</span> </h4>
-            <hr>
-            <h4><span>Suma godzin ost. tydzień: </span> <span style="float: right;">{{worker.totalHourInThisMonth}}</span> </h4>
-            <h4><span>Suma godzin ost. miesiąc: </span> <span style="float: right;">{{worker.totalHourInThisWeek}}</span> </h4>
-            
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
+  <button (click)="back()" mat-button><i class="material-icons">arrow_back</i>Powrót</button>
+  <button (click)="addWork()" mat-button><i class="material-icons">build</i>Praca</button>
+  <button mat-button><i class="material-icons">attach_money</i>Wypłata</button>
+</mat-toolbar>
+<div>
+  <div *ngIf="loadedData" class="spinner-center">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="!loadedData">
+    <mat-card class="example-card">
+      <mat-card-header class="round-header">
+        <div mat-card-avatar class="example-header-image"></div>
+        <div class="ellipsis" style="width:70%">
+          <mat-card-title class="worker-summ-card-title ellipsis">{{worker.firstName}} {{worker.lastName}}</mat-card-title>
+          <mat-card-subtitle class="ellipsis" style="color:white;margin-right: 7px;text-align: right;font-size: 14px">{{worker.address}}</mat-card-subtitle>
+        </div>
+      </mat-card-header>
+      <mat-card-content style="margin-top: 15px">
+        <h3><span>Należnoś:</span> <span style="float: right;">{{worker.wage}} zł</span> </h3>
+        <h4><span>Bonusy:</span> <span style="float: right;">{{worker.additionalWageInThisMonth}} zł</span> </h4>
+        <hr>
+        <h4><span>Suma godzin:</span> <span style="float: right;">{{worker.totalHour}}</span> </h4>
+        <h4><span>Niewypłacone godziny: </span> <span style="float: right;">{{worker.unpaidHour}}</span> </h4>
+        <h4><span>Aktualna stawka: </span> <span style="float: right;">15zł</span> </h4>
+        <hr>
+        <h4><span>Suma godzin ost. tydzień: </span> <span style="float: right;">{{worker.totalHourInThisMonth}}</span> </h4>
+        <h4><span>Suma godzin ost. miesiąc: </span> <span style="float: right;">{{worker.totalHourInThisWeek}}</span> </h4>
+
+      </mat-card-content>
+    </mat-card>
+    <h3 class="location-caption">Miejsca pracy</h3>
+    <div (click)="goToLocation(location)" class="location-card" *ngFor="let location of worker.locations">
+      <app-location-card [location]="location"></app-location-card>
+    </div>
+  </div>
+</div>

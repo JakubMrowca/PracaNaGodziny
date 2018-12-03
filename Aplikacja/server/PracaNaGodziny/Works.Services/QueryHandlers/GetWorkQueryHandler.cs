@@ -16,10 +16,12 @@ namespace Works.Services.QueryHandlers
     public class GetWorkQueryHandler : IQueryHandler<GetWork, WorkSummaryVm>, IQueryHandler<GetWorkByLocationAndWorker, WorkSummaryVm> 
     {
         private readonly IDocumentSession _session;
+        private readonly IQueryBus _queryBus;
 
-        public GetWorkQueryHandler(IDocumentSession session)
+        public GetWorkQueryHandler(IDocumentSession session, IQueryBus queryBus)
         {
             _session = session;
+            _queryBus = queryBus;
         }
 
         public Task<WorkSummaryVm> Handle(GetWork message, CancellationToken cancellationToken = default(CancellationToken))
@@ -29,7 +31,7 @@ namespace Works.Services.QueryHandlers
             workVm.To = message.To;
 
             var events = _session.Events.FetchStream(message.WorkId);
-
+            
             foreach (var @event in events)
             {
                 workVm.Apply(@event);
@@ -45,6 +47,7 @@ namespace Works.Services.QueryHandlers
                 PaidHour = workVm.PaidHour,
                 UnpaidHour = workVm.TotalHour,
                 AdditionalWage = workVm.AdditionalWage,
+                TotalWage = decimal.ToDouble(workVm.TotalWage),
                 Rate = workVm.Rate,
                 TotalHourInThisMonth = workVm.WorkStat.TotalHourInThisMonth,
                 TotalHourInThisWeek = workVm.WorkStat.TotalHourInThisWeek,

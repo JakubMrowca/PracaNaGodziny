@@ -6,24 +6,24 @@ using Works.Shared.ValueObjects;
 
 namespace Users.Services.Services
 {
-    public interface ILoggedUserService
+    public interface ILoggedUsersMock
     {
         UserVm GetLoggedUser();
         void SetLoggedUser(UserVm user);
     }
 
-    public class LoggedUserService : ILoggedUserService
+    public class LoggedUsersMock : ILoggedUsersMock
     {
-        private UserVm LoggedUser;
+        private UserVm _loggedUser;
 
         public UserVm GetLoggedUser()
         {
-            return LoggedUser;
+            return _loggedUser;
         }
 
         public void SetLoggedUser(UserVm user)
         {
-            LoggedUser = user;
+            _loggedUser = user;
         }
     }
 }

@@ -18,6 +18,7 @@ using Infrastructure.Domain.Queries;
 using MediatR;
 using Works.Shared.Queries;
 using Users.Services.Services;
+using Notifications.Shared.Events;
 
 namespace Users.Services.CommandHandlers
 {
@@ -32,10 +33,10 @@ namespace Users.Services.CommandHandlers
         private readonly IEventBus eventBus;
         private readonly IQueryBus queryBus;
         private readonly ICommandBus commandBus;
-        private readonly ILoggedUserService loggedUserService;
+        private readonly ILoggedUsersMock loggedUserService;
         private DbSet<User> Users;
 
-        public UsersCommandHandler(UsersDbContext dbContext, IEventBus eventBus, ICommandBus commandBus, IQueryBus queryBus, ILoggedUserService loggedUserService)
+        public UsersCommandHandler(UsersDbContext dbContext, IEventBus eventBus, ICommandBus commandBus, IQueryBus queryBus, ILoggedUsersMock loggedUserService)
         {
             this.loggedUserService = loggedUserService;
             this.dbContext = dbContext;
@@ -114,8 +115,8 @@ namespace Users.Services.CommandHandlers
             if (user == null)
                 throw new NotImplementedException();
 
-            var userVm = await queryBus.Send<GetForUser, Works.Shared.ValueObjects.UserVm>(new GetForUser { UserId = user.Id });
-            loggedUserService.SetLoggedUser(userVm);
+            var userAuthorize = new UserAuthorized { UserId = user.Id,ConnectionId = command.ConnectionId};
+            await eventBus.Publish(userAuthorize);
             return Unit.Value;
 
         }

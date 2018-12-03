@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Marten.Events;
+using Works.Models.Domain;
 using Works.Shared.Events;
 
 namespace Works.Models.View
@@ -20,6 +21,7 @@ namespace Works.Models.View
         public double PaidHour { get; set; }
         public double AdditionalHour { get; set; }
         public decimal AdditionalWage { get; set; }
+        public decimal TotalWage { get; set; }
 
         public DateTime? From { get; set; }
         public DateTime? To { get; set; }
@@ -49,6 +51,7 @@ namespace Works.Models.View
                 Wage += wage;
                 TotalHour += @event.Inflow.Hours;
                 WorkStat.Add(@event.Inflow.TimeStamp, wage, @event.Inflow.Hours);
+                TotalWage += wage;
             }
             else
             {
@@ -56,6 +59,7 @@ namespace Works.Models.View
                 AdditionalWage += additionalWage;
                 AdditionalHour += @event.Inflow.Hours;
                 WorkStat.Add(@event.Inflow.TimeStamp, additionalWage, @event.Inflow.Hours);
+                TotalWage += additionalWage;
             }
         }
 
@@ -90,6 +94,19 @@ namespace Works.Models.View
                     Apply(eventToApply);
             }
 
+            if (@event.Data.GetType() == typeof(RateChanged))
+            {
+                var eventToApply = (RateChanged)@event.Data;
+
+                if (From.HasValue && To.HasValue && eventToApply.TimeStamp > From && eventToApply.TimeStamp < To)
+                    Apply(eventToApply);
+                if (From.HasValue && To == null && eventToApply.TimeStamp > From)
+                    Apply(eventToApply);
+                if (From == null && To.HasValue && eventToApply.TimeStamp < To)
+                    Apply(eventToApply);
+                if (From == null && To == null)
+                    Apply(eventToApply);
+            }
             if (@event.Data.GetType() == typeof(NewWorkCreated))
             {
                 Apply((NewWorkCreated)@event.Data);
@@ -102,6 +119,11 @@ namespace Works.Models.View
             Wage -= wage;
             PaidHour += @event.OutFlow.Hours;
             WorkStat.Substract(@event.OutFlow.TimeStamp, wage, @event.OutFlow.Hours);
+        }
+
+        public void Apply(RateChanged @event)
+        {
+            Rate = @event.Value;
         }
     }
 }

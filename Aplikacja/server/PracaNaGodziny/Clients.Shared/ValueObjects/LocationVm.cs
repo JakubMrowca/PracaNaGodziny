@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Clients.Shared.ValueObjects;
+using Works.Shared.ValueObjects;
 
 namespace Clients.Shared.ValueObjects
 {
@@ -15,6 +17,9 @@ namespace Clients.Shared.ValueObjects
         public double TotalHour { get; set; }
         public double UnpaidHour => TotalHour - PaidHour;
         public decimal Wage { get; set; }
+        public double TotalWage { get; set; }
+        public List<WorkerVm> Workers { get; set; }
+
 
         public double TotalHourInThisMonth { get; set; }
         public double TotalHourInThisWeek { get; set; }

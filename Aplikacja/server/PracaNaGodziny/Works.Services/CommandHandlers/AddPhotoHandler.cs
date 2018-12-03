@@ -18,18 +18,18 @@ namespace Works.Services.CommandHandlers
     public class AddPhotoHandler : ICommandHandler<AddPhotoForEmployer>
     {
 
-        private readonly IPhotoServices _photoService;
+        private readonly IConvertPhoto _photoConverter;
         private DbSet<Employer> _emplyers;
         private readonly IEventBus _eventBus;
         private readonly WorkDbContext _workDbContext;
 
-        public AddPhotoHandler(IPhotoServices photoServices, WorkDbContext workDbContext, IEventBus eventBus)
+        public AddPhotoHandler(IConvertPhoto photoServices, WorkDbContext workDbContext, IEventBus eventBus)
         {
 
             _eventBus = eventBus;
             _workDbContext = workDbContext;
             _emplyers = _workDbContext.Employers;
-            _photoService = photoServices;
+            _photoConverter = photoServices;
         }
 
         public async Task<Unit> Handle(AddPhotoForEmployer command, CancellationToken cancellationToken)
@@ -39,7 +39,7 @@ namespace Works.Services.CommandHandlers
                 .Where(x => x.Id == Guid.Parse(command.EmployerId))
                 .FirstOrDefaultAsync(cancellationToken);
 
-            var photo = _photoService.ConvertToByteArray(command.Photo);
+            var photo = _photoConverter.ConvertToByteArray(command.Photo);
             employer.Photo = photo;
             _workDbContext.SaveChanges();
             return Unit.Value;

@@ -41,5 +41,6 @@ namespace Users.Services.EventHandlers
             store.Append(@event.Id, @event);
             return _session.SaveChangesAsync();
         }
+
     }
 }

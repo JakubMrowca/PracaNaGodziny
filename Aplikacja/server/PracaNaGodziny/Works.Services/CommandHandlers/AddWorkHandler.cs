@@ -11,11 +11,13 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Infrastructure.Domain.Events;
 using MediatR;
 using Works.Models.Domain;
 using Works.Models.Storage;
 using Works.Models.View;
 using Works.Shared.Commands;
+using Works.Shared.Events;
 using Works.Shared.Queries;
 using Works.Shared.ValueObjects;
 
@@ -28,12 +30,14 @@ namespace Works.Services.CommandHandlers
         private IEventStore _store => _session.Events;
         private IQueryBus _queryBus;
         private ICommandBus _commandBus;
+        private IEventBus _eventBus;
         private WorkDbContext _workDbContext;
-        public AddWorkHandler(IDocumentSession session, IQueryBus queryBus, WorkDbContext context, ICommandBus commandBus)
+        public AddWorkHandler(IDocumentSession session, IQueryBus queryBus, WorkDbContext context, ICommandBus commandBus, IEventBus eventBus)
         {
             _commandBus = commandBus;
             _session = session;
             _queryBus = queryBus;
+            _eventBus = eventBus;
             _workDbContext = context;
         }
 
@@ -69,6 +73,11 @@ namespace Works.Services.CommandHandlers
                 var createWorkCommand = new CreateNewWork() { Id = workId, LocationId = location.Id, WorkerId = command.WorkerId, Rate = command.Rate };
                 await _commandBus.Send(createWorkCommand);
                 work = await _queryBus.Send<GetWork, WorkSummaryVm>(new GetWork(workId));
+            }
+
+            if (work.Rate != command.Rate)
+            {
+                await _eventBus.Publish(new RateChanged() {Value = command.Rate, TimeStamp = command.WorkDate,WorkId = work.WorkId});
             }
 
             var addHourCommand = new AddHours()

@@ -12,6 +12,7 @@ namespace Works.Shared.ValueObjects
         public string Address { get; set; }
         public EmployerVm Employer { get; set; }
         public List<WorkSummaryVm> Works { get; set; }
+        public List<LocationVm> Locations { get; set; }
         public double PaidHour { get; set; }
         public double TotalHour { get; set; }
         public double UnpaidHour => TotalHour - PaidHour;

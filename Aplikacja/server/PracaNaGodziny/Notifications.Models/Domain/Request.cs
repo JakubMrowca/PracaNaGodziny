@@ -7,5 +7,6 @@ namespace Notifications.Models.Domain
 {
     public class Request: BaseAggregate
     {
+
     }
 }

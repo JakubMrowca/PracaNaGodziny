@@ -11,6 +11,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
 import { RoutingEnum } from '../state/RoutingEnum';
 import { LocationVm } from '../client/vm/LocationVm';
+import { EmployerRedirected } from './events/EmployerRedirected';
 
 @Component({
   selector: 'app-employer',
@@ -27,8 +28,8 @@ export class EmployerComponent implements OnInit {
   }
 
   ngOnInit() {
-    var event = new UserAuthorized();
-    this.eventService.sendEvent<UserAuthorized>(event);
+    var event = new EmployerRedirected();
+    this.eventService.sendEvent("EmployerRedirected", event);
     this.loadWorkers();
     this.loadLocations();
   }
@@ -74,6 +75,11 @@ export class EmployerComponent implements OnInit {
   goToWorker(worker:WorkerVm){
     this.appState.SelectedWorker = worker;
     this.router.navigate([RoutingEnum.worker])
+  }
+
+  goToLocation(location:LocationVm){
+    this.appState.SelectedLocation = location;
+    this.router.navigate([RoutingEnum.location])
   }
 
 

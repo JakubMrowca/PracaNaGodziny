@@ -7,7 +7,7 @@ using Works.Shared.Events;
 
 namespace Works.Models.Domain
 {
-    public class Work : EventSource
+    public class Work : EventSourcedAggregate
     {
         public Guid WorkerId { get; private set; }
         public Guid LocationId { get; private set; }

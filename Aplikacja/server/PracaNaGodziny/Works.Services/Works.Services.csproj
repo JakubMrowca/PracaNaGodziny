@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Marten" Version="3.0.1" />
+    <PackageReference Include="Marten" Version="3.6.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\PracaNaGodziny\Aplikacja\webApi\PracaNaGodziny\Infrastructure.Domain\Infrastructure.Domain.csproj" />
+    <ProjectReference Include="..\Infrastructure.Domain\Infrastructure.Domain.csproj" />
     <ProjectReference Include="..\Clients.Shared\Clients.Shared.csproj" />
     <ProjectReference Include="..\Users.Models\Users.Models.csproj" />
     <ProjectReference Include="..\Works.Models\Works.Models.csproj" />

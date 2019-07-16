@@ -6,10 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Marten" Version="3.6.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Infrastructure.Domain\Infrastructure.Domain.csproj" />
+    <PackageReference Include="MediatR" Version="7.0.0" />
   </ItemGroup>
 
 </Project>

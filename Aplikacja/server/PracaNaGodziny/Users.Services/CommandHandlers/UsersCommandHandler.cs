@@ -116,7 +116,7 @@ namespace Users.Services.CommandHandlers
                 throw new NotImplementedException();
 
             var userAuthorize = new UserAuthorized { UserId = user.Id,ConnectionId = command.ConnectionId};
-            await eventBus.Publish(userAuthorize);
+            eventBus.Publish(userAuthorize);
             return Unit.Value;
 
         }

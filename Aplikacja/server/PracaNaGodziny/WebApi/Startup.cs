@@ -94,7 +94,7 @@ namespace WebApi
         {
             services.AddCors(options => options.AddPolicy("MyPolicy", builder =>
                 builder.AllowAnyHeader()
-                    .AllowAnyOrigin()
+                    .SetIsOriginAllowed(host => true)
                     .AllowAnyMethod()
                     .AllowCredentials()));
         }

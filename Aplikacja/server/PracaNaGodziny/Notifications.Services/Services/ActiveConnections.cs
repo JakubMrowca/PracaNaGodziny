@@ -16,6 +16,11 @@ namespace Notifications.Services.Services
     public class ActiveConnections : IActiveConnections
     {
         public List<ConectionSet> Conections { get; set; }
+
+        public ActiveConnections()
+        {
+            Conections = new List<ConectionSet>();
+        }
     }
     
 }

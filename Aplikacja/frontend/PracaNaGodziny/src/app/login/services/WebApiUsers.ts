@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { CreateUserCommand } from '../command/CreateUserCommand';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { AuthorizeUserCommand } from '../command/AuthorizeUserCommand';
 import { UserVm } from '../vm/userVm';
 import { AddPhotoForEmployerCommand } from '../../employer/commands/AddPhotoForEmployerCommand';

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { AddWorkerForEmployerCommand } from '../commands/AddWorkerForEmployerCommand';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { EmployerVm } from '../vm/EmployerVm';
 import { AddPhotoForEmployerCommand } from '../commands/AddPhotoForEmployerCommand';
 import { WorkerVm } from '../../worker/vm/WorkerVm';
